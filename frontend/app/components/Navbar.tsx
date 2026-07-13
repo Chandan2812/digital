@@ -53,7 +53,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed left-4 right-4 top-4 z-50 flex items-center justify-between border border-white/10 bg-black/40 px-4 py-3 text-white backdrop-blur-2xl md:left-8 md:right-8 md:top-6 md:px-6">
+      <header className="fixed left-4 right-4 top-4 z-50 flex items-center justify-between border border-white/10 bg-black/40 px-4 py-3 text-white backdrop-blur-2xl md:left-8 md:right-8 md:top-6 md:px-6 rounded-3xl">
         <Link
           href="/"
           className="group flex items-center gap-3"
