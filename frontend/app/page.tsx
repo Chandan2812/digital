@@ -440,7 +440,7 @@ export default function Home() {
               BIGWIG MEDIA • DIGITAL GROWTH PARTNER
             </p>
 
-            <h1 className="mx-auto max-w-6xl text-5xl font-black uppercase leading-[0.86] tracking-normal md:text-6xl lg:text-[6rem]">
+            <h1 className="mx-auto max-w-7xl text-5xl font-black uppercase leading-[0.86] tracking-normal md:text-6xl lg:text-[6rem]">
               DISCOVER HOW WE TURN
               <br />
               IDEAS INTO CUSTOMERS,
@@ -477,7 +477,7 @@ export default function Home() {
           OUR PHILOSOPHY
         </p>
 
-        <h2 className="relative mt-10 max-w-7xl text-6xl font-black uppercase leading-[0.88] tracking-normal md:text-8xl lg:text-[10rem]">
+        <h2 className="relative mt-10 max-w-7xl text-6xl font-black uppercase leading-[0.88] tracking-normal md:text-7xl lg:text-[7rem]">
           {storyLetters.map((letter, index) => (
             <span
               className="story-letter inline-block origin-bottom"
@@ -566,7 +566,7 @@ export default function Home() {
                   />
                 </div>
                 <div>
-                  <h3 className="max-w-[15ch] text-[clamp(2.2rem,5vw,4.9rem)] font-black uppercase leading-[0.92] tracking-normal [overflow-wrap:normal] [word-break:normal] md:max-w-[16ch] xl:text-[4.6rem]">
+                  <h3 className="max-w-[15ch] text-[clamp(2.2rem,5vw,4.9rem)] font-black uppercase leading-[0.92] tracking-normal [overflow-wrap:normal] [word-break:normal] md:max-w-[16ch] xl:text-[4rem]">
                     {title}
                   </h3>
                   <p className="mt-5 max-w-xl text-base leading-7 text-white/62 md:text-lg">
