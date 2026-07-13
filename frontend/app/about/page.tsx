@@ -85,10 +85,6 @@ const whyChoose = [
     "Customized Solutions",
     "No copy-paste retainers. Your industry, budget and growth stage shape the strategy.",
   ],
-  [
-    "Long-Term Partnership",
-    "We build marketing systems that compound through testing, learning and consistent improvement.",
-  ],
 ];
 
 const industries = [
@@ -471,12 +467,12 @@ export default function AboutPage() {
             className="grid gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:items-end"
           >
             <div>
-            <p className="text-xs font-black uppercase tracking-[0.32em] text-[#ef3346]">
-              Core Values
-            </p>
-            <h2 className="mt-7 max-w-4xl text-4xl font-black uppercase leading-[0.9] md:text-6xl lg:text-7xl">
-              Standards that keep the work sharp.
-            </h2>
+              <p className="text-xs font-black uppercase tracking-[0.32em] text-[#ef3346]">
+                Core Values
+              </p>
+              <h2 className="mt-7 max-w-4xl text-4xl font-black uppercase leading-[0.9] md:text-6xl lg:text-7xl">
+                Standards that keep the work sharp.
+              </h2>
             </div>
             <p className="max-w-2xl text-base leading-7 text-black/62 md:text-lg md:leading-8 lg:justify-self-end">
               Premium marketing is not only about better ideas. It is about the
@@ -518,12 +514,12 @@ export default function AboutPage() {
             className="grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:items-end"
           >
             <div>
-            <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
-              Why Choose Bigwig Media
-            </p>
-            <h2 className="mt-7 max-w-5xl text-4xl font-black uppercase leading-[0.9] md:text-6xl lg:text-7xl">
-              A growth partner, not a task vendor.
-            </h2>
+              <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
+                Why Choose Bigwig Media
+              </p>
+              <h2 className="mt-7 max-w-5xl text-4xl font-black uppercase leading-[0.9] md:text-6xl lg:text-7xl">
+                A growth partner, not a task vendor.
+              </h2>
             </div>
             <p className="max-w-2xl text-base leading-7 text-white/64 md:text-lg md:leading-8 lg:justify-self-end">
               We align SEO, ads, content, design and web development into one
