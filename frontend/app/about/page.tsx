@@ -2,12 +2,12 @@
 
 import { Float, Line, Stars } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { animate, motion, useInView, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import type { Group } from "three";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -62,10 +62,6 @@ const coreValues = [
     "Creativity",
     "Our ideas are built to be useful, memorable and strong enough to move people toward action.",
   ],
-  [
-    "Continuous Learning",
-    "Platforms shift fast, so our team keeps improving strategy, execution and reporting every week.",
-  ],
 ];
 
 const whyChoose = [
@@ -93,14 +89,6 @@ const whyChoose = [
     "Long-Term Partnership",
     "We build marketing systems that compound through testing, learning and consistent improvement.",
   ],
-];
-
-const numbers = [
-  ["250", "+", "Projects Delivered"],
-  ["95", "%", "Client Retention"],
-  ["8", "+", "Years Experience"],
-  ["15", "+", "Marketing Experts"],
-  ["12", "+", "Industries Served"],
 ];
 
 const industries = [
@@ -138,7 +126,13 @@ function AboutGalaxy() {
   return (
     <group ref={group}>
       <Float speed={1.8} rotationIntensity={0.45} floatIntensity={0.8}>
-        <Line points={points} color="#65bc4f" lineWidth={2} transparent opacity={0.86} />
+        <Line
+          points={points}
+          color="#65bc4f"
+          lineWidth={2}
+          transparent
+          opacity={0.86}
+        />
         {points.map((point, index) => (
           <mesh key={`${point.join("-")}-${index}`} position={point}>
             <sphereGeometry args={[index === 2 ? 0.2 : 0.12, 32, 32]} />
@@ -153,11 +147,19 @@ function AboutGalaxy() {
         ))}
         <mesh rotation={[1.08, 0.2, 0.36]}>
           <torusGeometry args={[1.26, 0.018, 16, 150]} />
-          <meshStandardMaterial color="#155b9e" emissive="#155b9e" emissiveIntensity={1.3} />
+          <meshStandardMaterial
+            color="#155b9e"
+            emissive="#155b9e"
+            emissiveIntensity={1.3}
+          />
         </mesh>
         <mesh rotation={[0.36, -0.8, 0.1]}>
           <torusGeometry args={[1.72, 0.01, 16, 150]} />
-          <meshStandardMaterial color="#65bc4f" emissive="#00ff88" emissiveIntensity={0.85} />
+          <meshStandardMaterial
+            color="#65bc4f"
+            emissive="#00ff88"
+            emissiveIntensity={0.85}
+          />
         </mesh>
       </Float>
     </group>
@@ -175,38 +177,6 @@ function AboutWebGL() {
       <Stars count={760} depth={42} factor={3.5} fade speed={0.45} />
       <AboutGalaxy />
     </Canvas>
-  );
-}
-
-function AnimatedNumber({
-  value,
-  suffix,
-}: {
-  value: string;
-  suffix: string;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-15% 0px" });
-  const count = useMotionValue(0);
-  const [display, setDisplay] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-
-    const controls = animate(count, Number(value), {
-      duration: 1.8,
-      ease: [0.22, 1, 0.36, 1],
-      onUpdate: (latest) => setDisplay(Math.round(latest)),
-    });
-
-    return controls.stop;
-  }, [count, inView, value]);
-
-  return (
-    <span ref={ref}>
-      {display}
-      {suffix}
-    </span>
   );
 }
 
@@ -232,7 +202,9 @@ function SectionIntro({
 
   return (
     <div data-about-reveal className="mx-auto max-w-5xl text-center">
-      <p className={`text-xs font-black uppercase tracking-[0.32em] ${accentClass}`}>
+      <p
+        className={`text-xs font-black uppercase tracking-[0.32em] ${accentClass}`}
+      >
         {eyebrow}
       </p>
       <h2 className="mt-7 text-4xl font-black uppercase leading-[0.9] md:text-6xl lg:text-7xl">
@@ -321,24 +293,11 @@ function useAboutMotion() {
         },
       });
 
-      gsap.to(".about-who-track", {
-        xPercent: -58,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".who-section",
-          start: "top top",
-          end: "+=170%",
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
-        },
-      });
-
       gsap.fromTo(
         ".value-row",
-        { x: (index: number) => (index % 2 === 0 ? -90 : 90), opacity: 0.25 },
+        { y: 54, opacity: 0.25 },
         {
-          x: 0,
+          y: 0,
           opacity: 1,
           stagger: 0.08,
           ease: "power3.out",
@@ -431,7 +390,9 @@ export default function AboutPage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.15, duration: 0.8 }}
           >
-            Bigwig Media is a full-service digital marketing agency helping businesses grow through strategy, creativity and performance-driven marketing.
+            Bigwig Media is a full-service digital marketing agency helping
+            businesses grow through strategy, creativity and performance-driven
+            marketing.
           </motion.p>
           <motion.div
             className="mt-10 flex flex-col gap-4 sm:flex-row"
@@ -456,39 +417,43 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="who-section relative h-screen overflow-hidden bg-[#050505]">
+      <section className="who-section relative overflow-hidden bg-[#050505] px-5 py-24 md:px-10 md:py-28 lg:px-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_30%,rgba(101,188,79,0.18),transparent_34%),radial-gradient(circle_at_80%_70%,rgba(21,91,158,0.16),transparent_34%)]" />
-        <div className="relative flex h-screen items-center overflow-hidden">
-          <div className="about-who-track flex w-max items-stretch gap-8 px-[8vw]">
-            <div className="grid h-[70vh] w-[86vw] shrink-0 content-between md:w-[54vw] lg:w-[42vw]">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
-                  Who We Are
-                </p>
-                <h2 className="mt-7 text-5xl font-black uppercase leading-[0.86] md:text-7xl">
-                  One team.
-                  <br />
-                  Six growth disciplines.
-                </h2>
-              </div>
-              <p className="max-w-xl text-lg leading-8 text-white/64">
-                We bring specialists together around one goal: helping your business attract the right audience, earn trust faster and turn marketing activity into growth.
+        <div className="relative">
+          <div
+            data-about-reveal
+            className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end"
+          >
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
+                Who We Are
               </p>
+              <h2 className="mt-7 text-4xl font-black uppercase leading-[0.9] md:text-6xl lg:text-7xl">
+                One team. Six growth disciplines.
+              </h2>
             </div>
+            <p className="max-w-3xl text-base leading-7 text-white/64 md:text-lg md:leading-8 lg:justify-self-end">
+              We bring specialists together around one goal: helping your
+              business attract the right audience, earn trust faster and turn
+              marketing activity into growth.
+            </p>
+          </div>
 
+          <div className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {whoWeAre.map(([title, text], index) => (
               <article
                 key={title}
-                className="group grid h-[70vh] w-[78vw] shrink-0 content-between border-l border-white/14 pl-6 md:w-[42vw] lg:w-[30vw]"
+                data-about-reveal
+                className="group relative min-h-[260px] overflow-hidden border border-white/12 bg-white/[0.035] p-6 transition hover:-translate-y-1 hover:border-[#65BC4F]/55 hover:bg-white/[0.06] md:p-7"
               >
-                <span className="text-[8rem] font-black leading-none text-white/[0.06] transition group-hover:text-[#65BC4F]/30 md:text-[10rem]">
+                <span className="absolute right-5 top-4 text-7xl font-black leading-none text-white/[0.055] transition group-hover:text-[#65BC4F]/20 md:text-8xl">
                   0{index + 1}
                 </span>
-                <div>
-                  <h3 className="text-4xl font-black uppercase leading-none transition group-hover:text-[#65BC4F] md:text-5xl">
+                <div className="relative flex min-h-[210px] flex-col justify-end">
+                  <h3 className="max-w-[12rem] text-2xl font-black uppercase leading-[0.95] transition group-hover:text-[#65BC4F] md:text-3xl">
                     {title}
                   </h3>
-                  <p className="mt-6 max-w-md text-base leading-8 text-white/62">
+                  <p className="mt-5 max-w-md text-sm leading-7 text-white/62 md:text-base">
                     {text}
                   </p>
                 </div>
@@ -498,35 +463,44 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="values-section relative overflow-hidden bg-white px-5 py-28 text-black md:px-10 lg:px-16">
+      <section className="values-section relative overflow-hidden bg-white px-5 py-24 text-black md:px-10 md:py-28 lg:px-16">
         <div className="absolute inset-x-0 top-0 h-px bg-black/10" />
-        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          <div data-about-reveal className="lg:sticky lg:top-32 lg:h-fit">
+        <div>
+          <div
+            data-about-reveal
+            className="grid gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:items-end"
+          >
+            <div>
             <p className="text-xs font-black uppercase tracking-[0.32em] text-[#ef3346]">
               Core Values
             </p>
-            <h2 className="mt-7 text-5xl font-black uppercase leading-[0.86] md:text-7xl">
+            <h2 className="mt-7 max-w-4xl text-4xl font-black uppercase leading-[0.9] md:text-6xl lg:text-7xl">
               Standards that keep the work sharp.
             </h2>
-            <p className="mt-7 max-w-lg text-lg leading-8 text-black/62">
-              Premium marketing is not only about better ideas. It is about the discipline, honesty and pace that make those ideas work in the real world.
+            </div>
+            <p className="max-w-2xl text-base leading-7 text-black/62 md:text-lg md:leading-8 lg:justify-self-end">
+              Premium marketing is not only about better ideas. It is about the
+              discipline, honesty and pace that make those ideas work in the
+              real world.
             </p>
           </div>
 
-          <div className="divide-y divide-black/10">
+          <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {coreValues.map(([title, text], index) => (
               <article
                 key={title}
-                className="value-row grid gap-6 py-8 md:grid-cols-[120px_1fr]"
+                className={`value-row border border-black/10 bg-black/[0.025] p-6 transition hover:-translate-y-1 hover:border-[#155b9e]/35 hover:bg-[#155b9e]/[0.04] md:p-7 ${
+                  index === 0 ? "lg:col-span-2" : ""
+                }`}
               >
-                <span className="text-5xl font-black leading-none text-[#155b9e]">
+                <span className="block text-sm font-black uppercase tracking-[0.24em] text-[#155b9e]">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <h3 className="text-3xl font-black uppercase leading-none md:text-5xl">
+                  <h3 className="mt-10 text-2xl font-black uppercase leading-none md:text-4xl">
                     {title}
                   </h3>
-                  <p className="mt-4 max-w-2xl text-base leading-7 text-black/62">
+                  <p className="mt-4 max-w-2xl text-sm leading-7 text-black/62 md:text-base">
                     {text}
                   </p>
                 </div>
@@ -536,34 +510,45 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="choose-section relative overflow-hidden px-5 py-28 md:px-10 lg:px-16">
+      <section className="choose-section relative overflow-hidden px-5 py-24 md:px-10 md:py-28 lg:px-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_22%,rgba(21,91,158,0.18),transparent_30%),radial-gradient(circle_at_85%_70%,rgba(101,188,79,0.14),transparent_32%)]" />
-        <div className="relative grid gap-12 lg:grid-cols-[0.78fr_1.22fr]">
-          <div data-about-reveal className="lg:sticky lg:top-32 lg:h-fit">
+        <div className="relative">
+          <div
+            data-about-reveal
+            className="grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:items-end"
+          >
+            <div>
             <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
               Why Choose Bigwig Media
             </p>
-            <h2 className="mt-7 text-5xl font-black uppercase leading-[0.86] md:text-7xl">
+            <h2 className="mt-7 max-w-5xl text-4xl font-black uppercase leading-[0.9] md:text-6xl lg:text-7xl">
               A growth partner, not a task vendor.
             </h2>
-            <p className="mt-7 max-w-lg text-lg leading-8 text-white/64">
-              We align SEO, ads, content, design and web development into one system with clear reporting and visible momentum.
+            </div>
+            <p className="max-w-2xl text-base leading-7 text-white/64 md:text-lg md:leading-8 lg:justify-self-end">
+              We align SEO, ads, content, design and web development into one
+              system with clear reporting and visible momentum.
             </p>
           </div>
 
-          <div className="grid gap-0">
+          <div className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {whyChoose.map(([title, text], index) => (
-              <article key={title} className="group relative py-9">
-                <span className="choose-line absolute left-0 top-0 h-px w-full bg-[#65BC4F]/70" />
-                <div className="grid gap-6 md:grid-cols-[120px_1fr]">
-                  <span className="text-6xl font-black leading-none text-white/[0.08] transition group-hover:text-[#65BC4F]/40">
+              <article
+                key={title}
+                className={`group relative overflow-hidden border border-white/12 bg-[#0b0b0b]/80 p-6 transition hover:-translate-y-1 hover:border-[#65BC4F]/55 hover:bg-white/[0.055] md:p-7 ${
+                  index === 0 || index === 5 ? "xl:col-span-2" : ""
+                }`}
+              >
+                <span className="choose-line absolute left-0 top-0 h-1 w-full bg-[#65BC4F]/70" />
+                <div className="flex min-h-[220px] flex-col justify-between gap-10">
+                  <span className="text-5xl font-black leading-none text-white/[0.08] transition group-hover:text-[#65BC4F]/35">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="text-3xl font-black uppercase leading-none transition group-hover:translate-x-3 group-hover:text-[#65BC4F] md:text-5xl">
+                    <h3 className="max-w-lg text-2xl font-black uppercase leading-[0.95] transition group-hover:text-[#65BC4F] md:text-4xl">
                       {title}
                     </h3>
-                    <p className="mt-5 max-w-2xl text-base leading-8 text-white/62">
+                    <p className="mt-5 max-w-xl text-sm leading-7 text-white/62 md:text-base">
                       {text}
                     </p>
                   </div>
@@ -571,35 +556,6 @@ export default function AboutPage() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="numbers-section relative overflow-hidden bg-[#080808] py-28">
-        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(239,51,70,0.16),transparent_34%),radial-gradient(circle_at_76%_32%,rgba(101,188,79,0.18),transparent_30%)]" />
-        <div className="relative px-5 md:px-10 lg:px-16">
-          <div data-about-reveal className="max-w-5xl">
-            <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
-              Numbers That Speak
-            </p>
-            <h2 className="mt-7 text-5xl font-black uppercase leading-[0.86] md:text-7xl">
-              Proof that our growth systems keep moving.
-            </h2>
-          </div>
-        </div>
-        <div className="number-track relative mt-16 flex w-max gap-10 px-5 md:px-10 lg:px-16">
-          {numbers.map(([value, suffix, label]) => (
-            <article
-              key={label}
-              className="grid min-h-72 w-[72vw] shrink-0 content-between border-t border-white/15 pt-6 md:w-[38vw] lg:w-[28vw]"
-            >
-              <strong className="block text-7xl font-black leading-none text-[#65BC4F] md:text-8xl">
-                <AnimatedNumber value={value} suffix={suffix} />
-              </strong>
-              <p className="text-sm font-black uppercase tracking-[0.2em] text-white/58">
-                {label}
-              </p>
-            </article>
-          ))}
         </div>
       </section>
 
@@ -623,23 +579,6 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-
-        <div className="mt-14 grid gap-5 lg:grid-cols-4">
-          {industries.slice(0, 4).map((industry, index) => (
-            <div
-              data-about-reveal
-              key={industry}
-              className="border-t border-white/12 pt-5"
-            >
-              <span className="text-xs font-black uppercase tracking-[0.22em] text-[#65BC4F]">
-                Sector {String(index + 1).padStart(2, "0")}
-              </span>
-              <p className="mt-6 text-3xl font-black uppercase leading-none">
-                {industry}
-              </p>
-            </div>
-          ))}
-        </div>
       </section>
 
       <section className="relative grid min-h-screen place-items-center overflow-hidden px-5 py-28 text-center md:px-10 lg:px-16">
@@ -654,7 +593,9 @@ export default function AboutPage() {
             Performance Always.
           </h2>
           <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-white/70">
-            When your brand needs sharper visibility, better leads and a digital presence that feels premium, Bigwig Media builds the system to get you there.
+            When your brand needs sharper visibility, better leads and a digital
+            presence that feels premium, Bigwig Media builds the system to get
+            you there.
           </p>
           <a
             href="#contact"
