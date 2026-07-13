@@ -434,13 +434,13 @@ export default function Home() {
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent,rgba(5,5,5,0.82)_70%),linear-gradient(180deg,rgba(5,5,5,0.1),#050505)]" />
         <div className="hero-orbit absolute left-1/2 top-1/2 h-[72vmin] w-[72vmin] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
-        <div className="hero-title relative z-10 grid min-h-[720px] place-items-center px-5 py-16 text-center md:min-h-screen md:pt-40">
+        <div className="hero-title relative z-10 grid min-h-[720px] place-items-center px-5 py-16 text-center md:min-h-screen ">
           <div>
             <p className="mb-6 text-xs font-black uppercase tracking-[0.35em] text-[#65BC4F]">
               BIGWIG MEDIA • DIGITAL GROWTH PARTNER
             </p>
 
-            <h1 className="mx-auto max-w-7xl text-5xl font-black uppercase leading-[0.86] tracking-normal md:text-6xl lg:text-[6rem]">
+            <h1 className="mx-auto max-w-7xl text-5xl font-black uppercase leading-[0.86] tracking-normal md:text-5xl lg:text-[5rem]">
               DISCOVER HOW WE TURN
               <br />
               IDEAS INTO CUSTOMERS,

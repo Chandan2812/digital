@@ -5,6 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { animate, motion, useInView, useMotionValue } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Group } from "three";
@@ -214,11 +215,13 @@ function SectionIntro({
   title,
   copy,
   accent = "green",
+  tone = "dark",
 }: {
   eyebrow: string;
   title: string;
   copy?: string;
   accent?: "green" | "red" | "blue";
+  tone?: "dark" | "light";
 }) {
   const accentClass =
     accent === "red"
@@ -236,7 +239,11 @@ function SectionIntro({
         {title}
       </h2>
       {copy ? (
-        <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-white/64 md:text-lg md:leading-8">
+        <p
+          className={`mx-auto mt-6 max-w-3xl text-base leading-7 md:text-lg md:leading-8 ${
+            tone === "light" ? "text-black/62" : "text-white/64"
+          }`}
+        >
           {copy}
         </p>
       ) : null}
@@ -246,6 +253,21 @@ function SectionIntro({
 
 function useAboutMotion() {
   useEffect(() => {
+    const lenis = new Lenis({
+      lerp: 0.08,
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+    });
+
+    let rafId = 0;
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+
+    rafId = requestAnimationFrame(raf);
+    lenis.on("scroll", ScrollTrigger.update);
+
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>("[data-about-reveal]").forEach((item) => {
         gsap.fromTo(
@@ -262,6 +284,19 @@ function useAboutMotion() {
         );
       });
 
+      gsap.fromTo(
+        ".about-hero-copy > *",
+        { y: 70, opacity: 0, filter: "blur(14px)" },
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 1.1,
+          stagger: 0.1,
+          ease: "power4.out",
+        },
+      );
+
       gsap.to(".about-orbit", {
         rotate: 150,
         scale: 1.12,
@@ -274,19 +309,88 @@ function useAboutMotion() {
         },
       });
 
-      gsap.to(".value-strip", {
-        xPercent: -18,
+      gsap.to(".about-hero-bg", {
+        scale: 1.18,
+        opacity: 0.62,
         ease: "none",
         scrollTrigger: {
-          trigger: ".values-section",
+          trigger: ".about-hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+
+      gsap.to(".about-who-track", {
+        xPercent: -58,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".who-section",
+          start: "top top",
+          end: "+=170%",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+        },
+      });
+
+      gsap.fromTo(
+        ".value-row",
+        { x: (index: number) => (index % 2 === 0 ? -90 : 90), opacity: 0.25 },
+        {
+          x: 0,
+          opacity: 1,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".values-section",
+            start: "top 68%",
+            end: "bottom 54%",
+            scrub: 1,
+          },
+        },
+      );
+
+      gsap.fromTo(
+        ".choose-line",
+        { scaleX: 0, transformOrigin: "left center" },
+        {
+          scaleX: 1,
+          stagger: 0.08,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".choose-section",
+            start: "top 70%",
+            end: "bottom 50%",
+            scrub: 1,
+          },
+        },
+      );
+
+      gsap.to(".number-track", {
+        xPercent: -24,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".numbers-section",
           start: "top bottom",
           end: "bottom top",
           scrub: 1,
         },
       });
+
+      gsap.to(".industry-marquee", {
+        xPercent: -50,
+        ease: "none",
+        repeat: -1,
+        duration: 24,
+      });
     });
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
   }, []);
 }
 
@@ -298,13 +402,13 @@ export default function AboutPage() {
       <Navbar />
 
       <section className="about-hero relative grid min-h-screen items-center overflow-hidden px-5 pb-16 pt-36 md:px-10 md:pt-40 lg:px-16">
-        <div className="absolute inset-0">
+        <div className="about-hero-bg absolute inset-0">
           <AboutWebGL />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.92),rgba(5,5,5,0.52)_48%,rgba(5,5,5,0.88)),radial-gradient(circle_at_72%_42%,transparent,rgba(5,5,5,0.84)_58%),linear-gradient(180deg,rgba(5,5,5,0.14),#050505)]" />
         <div className="about-orbit pointer-events-none absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
 
-        <div className="relative z-10 max-w-7xl">
+        <div className="about-hero-copy relative z-10 max-w-7xl">
           <motion.p
             className="text-xs font-black uppercase tracking-[0.34em] text-[#65BC4F]"
             initial={{ y: 18, opacity: 0 }}
@@ -352,134 +456,154 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative px-5 py-24 md:px-10 lg:px-16">
-        <SectionIntro
-          eyebrow="Who We Are"
-          title="A team built for strategy, creativity and measurable performance."
-          copy="We bring specialists together around one goal: helping your business attract the right audience, earn trust faster and turn marketing activity into growth."
-        />
+      <section className="who-section relative h-screen overflow-hidden bg-[#050505]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_30%,rgba(101,188,79,0.18),transparent_34%),radial-gradient(circle_at_80%_70%,rgba(21,91,158,0.16),transparent_34%)]" />
+        <div className="relative flex h-screen items-center overflow-hidden">
+          <div className="about-who-track flex w-max items-stretch gap-8 px-[8vw]">
+            <div className="grid h-[70vh] w-[86vw] shrink-0 content-between md:w-[54vw] lg:w-[42vw]">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
+                  Who We Are
+                </p>
+                <h2 className="mt-7 text-5xl font-black uppercase leading-[0.86] md:text-7xl">
+                  One team.
+                  <br />
+                  Six growth disciplines.
+                </h2>
+              </div>
+              <p className="max-w-xl text-lg leading-8 text-white/64">
+                We bring specialists together around one goal: helping your business attract the right audience, earn trust faster and turn marketing activity into growth.
+              </p>
+            </div>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {whoWeAre.map(([title, text], index) => (
-            <article
-              data-about-reveal
-              key={title}
-              className="group min-h-64 border border-white/10 bg-white/[0.04] p-6 transition duration-500 hover:-translate-y-2 hover:border-[#65BC4F]/55 hover:bg-white/[0.075]"
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-black uppercase tracking-[0.22em] text-white/35">
+            {whoWeAre.map(([title, text], index) => (
+              <article
+                key={title}
+                className="group grid h-[70vh] w-[78vw] shrink-0 content-between border-l border-white/14 pl-6 md:w-[42vw] lg:w-[30vw]"
+              >
+                <span className="text-[8rem] font-black leading-none text-white/[0.06] transition group-hover:text-[#65BC4F]/30 md:text-[10rem]">
                   0{index + 1}
                 </span>
-                <span className="h-3 w-3 rounded-full bg-[#65BC4F] shadow-[0_0_24px_rgba(101,188,79,0.8)] transition group-hover:scale-[1.7]" />
-              </div>
-              <h3 className="mt-12 text-3xl font-black uppercase leading-none">
-                {title}
-              </h3>
-              <p className="mt-5 text-sm leading-7 text-white/62">{text}</p>
+                <div>
+                  <h3 className="text-4xl font-black uppercase leading-none transition group-hover:text-[#65BC4F] md:text-5xl">
+                    {title}
+                  </h3>
+                  <p className="mt-6 max-w-md text-base leading-8 text-white/62">
+                    {text}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="values-section relative overflow-hidden bg-white px-5 py-28 text-black md:px-10 lg:px-16">
+        <div className="absolute inset-x-0 top-0 h-px bg-black/10" />
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <div data-about-reveal className="lg:sticky lg:top-32 lg:h-fit">
+            <p className="text-xs font-black uppercase tracking-[0.32em] text-[#ef3346]">
+              Core Values
+            </p>
+            <h2 className="mt-7 text-5xl font-black uppercase leading-[0.86] md:text-7xl">
+              Standards that keep the work sharp.
+            </h2>
+            <p className="mt-7 max-w-lg text-lg leading-8 text-black/62">
+              Premium marketing is not only about better ideas. It is about the discipline, honesty and pace that make those ideas work in the real world.
+            </p>
+          </div>
+
+          <div className="divide-y divide-black/10">
+            {coreValues.map(([title, text], index) => (
+              <article
+                key={title}
+                className="value-row grid gap-6 py-8 md:grid-cols-[120px_1fr]"
+              >
+                <span className="text-5xl font-black leading-none text-[#155b9e]">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-3xl font-black uppercase leading-none md:text-5xl">
+                    {title}
+                  </h3>
+                  <p className="mt-4 max-w-2xl text-base leading-7 text-black/62">
+                    {text}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="choose-section relative overflow-hidden px-5 py-28 md:px-10 lg:px-16">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_22%,rgba(21,91,158,0.18),transparent_30%),radial-gradient(circle_at_85%_70%,rgba(101,188,79,0.14),transparent_32%)]" />
+        <div className="relative grid gap-12 lg:grid-cols-[0.78fr_1.22fr]">
+          <div data-about-reveal className="lg:sticky lg:top-32 lg:h-fit">
+            <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
+              Why Choose Bigwig Media
+            </p>
+            <h2 className="mt-7 text-5xl font-black uppercase leading-[0.86] md:text-7xl">
+              A growth partner, not a task vendor.
+            </h2>
+            <p className="mt-7 max-w-lg text-lg leading-8 text-white/64">
+              We align SEO, ads, content, design and web development into one system with clear reporting and visible momentum.
+            </p>
+          </div>
+
+          <div className="grid gap-0">
+            {whyChoose.map(([title, text], index) => (
+              <article key={title} className="group relative py-9">
+                <span className="choose-line absolute left-0 top-0 h-px w-full bg-[#65BC4F]/70" />
+                <div className="grid gap-6 md:grid-cols-[120px_1fr]">
+                  <span className="text-6xl font-black leading-none text-white/[0.08] transition group-hover:text-[#65BC4F]/40">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="text-3xl font-black uppercase leading-none transition group-hover:translate-x-3 group-hover:text-[#65BC4F] md:text-5xl">
+                      {title}
+                    </h3>
+                    <p className="mt-5 max-w-2xl text-base leading-8 text-white/62">
+                      {text}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="numbers-section relative overflow-hidden bg-[#080808] py-28">
+        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(239,51,70,0.16),transparent_34%),radial-gradient(circle_at_76%_32%,rgba(101,188,79,0.18),transparent_30%)]" />
+        <div className="relative px-5 md:px-10 lg:px-16">
+          <div data-about-reveal className="max-w-5xl">
+            <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
+              Numbers That Speak
+            </p>
+            <h2 className="mt-7 text-5xl font-black uppercase leading-[0.86] md:text-7xl">
+              Proof that our growth systems keep moving.
+            </h2>
+          </div>
+        </div>
+        <div className="number-track relative mt-16 flex w-max gap-10 px-5 md:px-10 lg:px-16">
+          {numbers.map(([value, suffix, label]) => (
+            <article
+              key={label}
+              className="grid min-h-72 w-[72vw] shrink-0 content-between border-t border-white/15 pt-6 md:w-[38vw] lg:w-[28vw]"
+            >
+              <strong className="block text-7xl font-black leading-none text-[#65BC4F] md:text-8xl">
+                <AnimatedNumber value={value} suffix={suffix} />
+              </strong>
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-white/58">
+                {label}
+              </p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="values-section relative overflow-hidden bg-white px-5 py-24 text-black md:px-10 lg:px-16">
-        <div className="value-strip pointer-events-none absolute top-8 flex w-max gap-6 text-[8rem] font-black uppercase leading-none text-black/[0.035] md:text-[12rem]">
-          <span>Values</span>
-          <span>Values</span>
-          <span>Values</span>
-        </div>
-        <div className="relative">
-          <SectionIntro
-            eyebrow="Core Values"
-            title="The standards behind every campaign, build and report."
-            copy="Premium marketing is not only about better ideas. It is about the discipline, honesty and pace that make those ideas work in the real world."
-            accent="red"
-          />
-
-          <div className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {coreValues.map(([title, text], index) => (
-              <article
-                data-about-reveal
-                key={title}
-                className="min-h-72 border border-black/10 bg-[#f7f7f7] p-6 shadow-[0_22px_70px_rgba(0,0,0,0.08)] transition duration-500 hover:-translate-y-2 hover:border-[#65BC4F]/60 hover:bg-white"
-              >
-                <span className="text-xs font-black uppercase tracking-[0.22em] text-[#155b9e]">
-                  Value 0{index + 1}
-                </span>
-                <h3 className="mt-12 text-3xl font-black uppercase leading-none">
-                  {title}
-                </h3>
-                <p className="mt-5 text-sm leading-7 text-black/62">{text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden px-5 py-24 md:px-10 lg:px-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_22%,rgba(21,91,158,0.18),transparent_30%),radial-gradient(circle_at_85%_70%,rgba(101,188,79,0.14),transparent_32%)]" />
-        <div className="relative">
-          <SectionIntro
-            eyebrow="Why Choose Bigwig Media"
-            title="Marketing that looks sharp, reads clearly and performs harder."
-            copy="We do not treat SEO, ads, content, design and web development as separate islands. We align them into one growth system with reporting you can trust."
-          />
-
-          <div className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {whyChoose.map(([title, text], index) => (
-              <article
-                data-about-reveal
-                key={title}
-                className="group relative min-h-72 overflow-hidden border border-white/10 bg-[#0c0c0c] p-6 transition duration-500 hover:-translate-y-2 hover:border-[#65BC4F]/55"
-              >
-                <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(101,188,79,0.22),transparent_36%),linear-gradient(135deg,rgba(21,91,158,0.2),transparent_48%)]" />
-                </div>
-                <div className="relative">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-sm font-black text-[#050505] transition group-hover:bg-[#65BC4F]">
-                    {index + 1}
-                  </span>
-                  <h3 className="mt-12 text-3xl font-black uppercase leading-none">
-                    {title}
-                  </h3>
-                  <p className="mt-5 text-sm leading-7 text-white/62">{text}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-[#080808] px-5 py-24 md:px-10 lg:px-16">
-        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(239,51,70,0.16),transparent_34%),radial-gradient(circle_at_76%_32%,rgba(101,188,79,0.18),transparent_30%)]" />
-        <div className="relative grid items-end gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-          <div data-about-reveal>
-            <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
-              Numbers That Speak
-            </p>
-            <h2 className="mt-7 text-4xl font-black uppercase leading-[0.9] md:text-6xl lg:text-7xl">
-              Proof that our growth systems keep moving.
-            </h2>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {numbers.map(([value, suffix, label]) => (
-              <article
-                data-about-reveal
-                key={label}
-                className="border border-white/10 bg-white/[0.04] p-6 transition duration-500 hover:-translate-y-2 hover:border-[#65BC4F]/50 hover:bg-white/[0.07]"
-              >
-                <strong className="block text-6xl font-black leading-none text-[#65BC4F] md:text-7xl">
-                  <AnimatedNumber value={value} suffix={suffix} />
-                </strong>
-                <p className="mt-6 text-sm font-black uppercase tracking-[0.18em] text-white/58">
-                  {label}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden px-5 py-24 md:px-10 lg:px-16">
+      <section className="relative overflow-hidden px-5 py-28 md:px-10 lg:px-16">
         <SectionIntro
           eyebrow="Industries We Serve"
           title="Flexible strategy for different markets, buyers and sales cycles."
@@ -487,20 +611,33 @@ export default function AboutPage() {
           accent="blue"
         />
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {industries.map((industry, index) => (
-            <article
+        <div className="mt-16 overflow-hidden border-y border-white/10 py-8">
+          <div className="industry-marquee flex w-max gap-5">
+            {industries.concat(industries).map((industry, index) => (
+              <span
+                key={`${industry}-${index}`}
+                className="shrink-0 rounded-full border border-white/14 px-7 py-4 text-sm font-black uppercase tracking-[0.18em] text-white/74 transition hover:border-[#65BC4F] hover:bg-[#65BC4F] hover:text-[#050505]"
+              >
+                {industry}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-14 grid gap-5 lg:grid-cols-4">
+          {industries.slice(0, 4).map((industry, index) => (
+            <div
               data-about-reveal
               key={industry}
-              className="group min-h-44 border border-white/10 bg-white/[0.04] p-5 transition duration-500 hover:-translate-y-2 hover:border-[#65BC4F]/55 hover:bg-[#65BC4F]"
+              className="border-t border-white/12 pt-5"
             >
-              <span className="text-xs font-black uppercase tracking-[0.22em] text-white/35 transition group-hover:text-[#050505]/50">
-                {String(index + 1).padStart(2, "0")}
+              <span className="text-xs font-black uppercase tracking-[0.22em] text-[#65BC4F]">
+                Sector {String(index + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-12 text-2xl font-black uppercase leading-none transition group-hover:text-[#050505]">
+              <p className="mt-6 text-3xl font-black uppercase leading-none">
                 {industry}
-              </h3>
-            </article>
+              </p>
+            </div>
           ))}
         </div>
       </section>
