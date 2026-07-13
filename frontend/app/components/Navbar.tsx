@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const menuLinks = [
-  { label: "Home", href: "#top" },
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "#services" },
   { label: "Blogs", href: "#blogs" },
@@ -54,8 +54,8 @@ export default function Navbar() {
   return (
     <>
       <header className="fixed left-4 right-4 top-4 z-50 flex items-center justify-between border border-white/10 bg-black/40 px-4 py-3 text-white backdrop-blur-2xl md:left-8 md:right-8 md:top-6 md:px-6">
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="group flex items-center gap-3"
           aria-label="Bigwig Media home"
           onClick={closeMenu}
@@ -69,16 +69,16 @@ export default function Navbar() {
               priority
             />
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-7 text-[11px] font-bold uppercase tracking-[0.2em] text-white/64 lg:flex">
-          <a
+          <Link
             className="transition hover:text-[#65BC4F]"
-            href="#top"
+            href="/"
             onClick={closeMenu}
           >
             Home
-          </a>
+          </Link>
           <Link
             className="transition hover:text-[#65BC4F]"
             href="/about"
@@ -167,8 +167,8 @@ export default function Navbar() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(101,188,79,0.22),transparent_32%),radial-gradient(circle_at_84%_82%,rgba(239,51,70,0.2),transparent_34%),linear-gradient(135deg,rgba(21,91,158,0.18),transparent_38%)]" />
 
         <div className="relative flex shrink-0 items-center justify-between border-b border-white/10 p-4 md:p-5">
-          <a
-            href="#top"
+          <Link
+            href="/"
             className="rounded-full bg-white px-4 py-2"
             aria-label="Bigwig Media home"
             onClick={closeMenu}
@@ -179,7 +179,7 @@ export default function Navbar() {
               width={130}
               height={48}
             />
-          </a>
+          </Link>
           <button
             className="h-10 w-10 rounded-full border border-white/15 bg-white text-sm font-black text-[#050505] transition hover:bg-[#65BC4F] md:h-11 md:w-11"
             type="button"

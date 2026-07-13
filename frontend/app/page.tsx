@@ -427,14 +427,14 @@ export default function Home() {
 
       <section
         id="top"
-        className="hero-scene relative h-screen overflow-hidden"
+        className="hero-scene relative min-h-[720px] overflow-hidden md:min-h-screen"
       >
         <div className="hero-webgl absolute inset-0">
           <BigwigWebGL />
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent,rgba(5,5,5,0.82)_70%),linear-gradient(180deg,rgba(5,5,5,0.1),#050505)]" />
         <div className="hero-orbit absolute left-1/2 top-1/2 h-[72vmin] w-[72vmin] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
-        <div className="hero-title relative z-10 grid h-full place-items-center px-5 text-center">
+        <div className="hero-title relative z-10 grid min-h-[720px] place-items-center px-5 py-16 text-center md:min-h-screen md:pt-40">
           <div>
             <p className="mb-6 text-xs font-black uppercase tracking-[0.35em] text-[#65BC4F]">
               BIGWIG MEDIA • DIGITAL GROWTH PARTNER
@@ -495,7 +495,7 @@ export default function Home() {
           Every successful business needs more than just traffic or followers.
           It needs a strategy that attracts the right audience, builds trust,
           converts visitors into customers, and creates sustainable growth.
-          That's exactly what we build.
+          That&apos;s exactly what we build.
         </p>
       </section>
 
@@ -725,7 +725,7 @@ export default function Home() {
               </span>
 
               <p className="mt-10 text-xl font-bold leading-9 text-black">
-                "{item.quote}"
+                &quot;{item.quote}&quot;
               </p>
             </div>
           ))}
@@ -762,7 +762,7 @@ export default function Home() {
           </div>
 
           <div className="grid gap-5">
-            {faqs.map(([q, a], index) => (
+            {faqs.map(([q, a]) => (
               <details
                 key={q}
                 className="group rounded-2xl border border-white/10 bg-white/[0.04] transition-all duration-300 open:border-[#65BC4F]/40 open:bg-white/[0.08]"
@@ -793,7 +793,7 @@ export default function Home() {
 
         <div data-reveal className="relative max-w-5xl">
           <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
-            LET'S GROW YOUR BUSINESS
+            LET&apos;S GROW YOUR BUSINESS
           </p>
 
           <h2 className="mt-8 text-6xl font-black uppercase leading-[0.82] md:text-[9rem]">
@@ -805,8 +805,8 @@ export default function Home() {
           </h2>
 
           <p className="mx-auto mt-10 max-w-3xl text-lg leading-8 text-white/70 md:text-xl">
-            Whether you're launching a new business or looking to scale your
-            existing brand, our team is ready to build a digital marketing
+            Whether you&apos;re launching a new business or looking to scale
+            your existing brand, our team is ready to build a digital marketing
             strategy that delivers measurable growth, qualified leads and
             long-term success.
           </p>
