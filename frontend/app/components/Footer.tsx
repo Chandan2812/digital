@@ -43,7 +43,7 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="relative overflow-hidden bg-[#050505] px-5 py-20 text-white md:px-10 lg:px-16"
+      className="relative overflow-hidden bg-[#050505] px-5 py-10 text-white md:px-10 lg:px-16"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_16%,rgba(101,188,79,0.2),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(21,91,158,0.32),transparent_30%),radial-gradient(circle_at_72%_82%,rgba(239,51,70,0.2),transparent_28%)]" />
 

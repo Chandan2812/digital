@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useLayoutEffect, useRef, type CSSProperties } from "react";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
@@ -59,8 +58,6 @@ export default function CollisionHero() {
   const particleRefs = useRef<HTMLSpanElement[]>([]);
   const flashRef = useRef<HTMLDivElement>(null);
   const shockwaveRef = useRef<HTMLDivElement>(null);
-  const introRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const scene = sceneRef.current;
@@ -75,8 +72,6 @@ export default function CollisionHero() {
     const rightSliceStack = rightSliceStackRef.current;
     const flash = flashRef.current;
     const shockwave = shockwaveRef.current;
-    const intro = introRef.current;
-    const content = contentRef.current;
 
     if (
       !scene ||
@@ -91,8 +86,6 @@ export default function CollisionHero() {
       !rightSliceStack ||
       !flash ||
       !shockwave ||
-      !intro ||
-      !content ||
       window.matchMedia("(prefers-reduced-motion: reduce), (max-width: 767px)").matches
     ) {
       return;
@@ -140,7 +133,7 @@ export default function CollisionHero() {
         scrollTrigger: {
           trigger: scene,
           start: "top top",
-          end: () => `+=${Math.max(window.innerHeight * 2.8, 1960)}`,
+          end: () => `+=${Math.max(window.innerHeight * 1.4, 980)}`,
           pin: true,
           pinSpacing: true,
           scrub: 0.5,
@@ -186,7 +179,6 @@ export default function CollisionHero() {
         .set(flash, { autoAlpha: 0, scaleX: 0.2, scaleY: 0.2 }, 0)
         .set(shockwave, { autoAlpha: 0, scale: 0.16 }, 0)
         .set(particles, { autoAlpha: 0, x: 0, y: 0, scale: 0.2 }, 0)
-        .set(content, { autoAlpha: 0, y: 18 }, 0)
         .to(leftTravel, {
           x: 0,
           duration: 1.88,
@@ -204,13 +196,6 @@ export default function CollisionHero() {
           duration: 1.88,
           ease: "collision-drive",
         }, 0)
-        .to(intro, {
-          autoAlpha: 0,
-          y: -22,
-          scale: 0.985,
-          duration: 0.52,
-          ease: "power3.inOut",
-        }, 0.18)
         .addLabel("impact", 1.88)
         .to(leftTravel, { x: 12, duration: 0.105, ease: "power2.in" }, "impact")
         .to(rightTravel, { x: -12, duration: 0.105, ease: "power2.in" }, "impact")
@@ -316,14 +301,11 @@ export default function CollisionHero() {
           duration: 0.24,
           ease: "elastic.out(1, 0.72)",
         }, "impact+=0.46")
-        .to([leftBase, rightBase], { autoAlpha: 1, duration: 0.075, ease: "sine.out" }, "impact+=0.52")
-        .to([leftSliceStack, rightSliceStack], { autoAlpha: 0, duration: 0.075, ease: "sine.in" }, "impact+=0.52")
-        .to(content, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.38,
-          ease: "power3.out",
-        }, "impact+=0.68");
+        .to(allMasses, {
+          autoAlpha: 0,
+          duration: 0.24,
+          ease: "power2.in",
+        }, "impact+=0.48");
 
       PARTICLES.forEach((particle, index) => {
         const particleElement = particles[index];
@@ -467,33 +449,6 @@ export default function CollisionHero() {
           ))}
         </div>
       </div>
-
-      <div ref={introRef} className="collision-hero__intro">
-        <p className="collision-hero__intro-kicker">BIGWIG MEDIA / GROWTH PARTNER</p>
-        <h2>
-          Make your next move
-          <em>impossible to ignore.</em>
-        </h2>
-        <p className="collision-hero__intro-copy">
-          We turn ambitious brands into digital experiences that earn attention and drive momentum.
-        </p>
-       
-        <div className="collision-hero__scroll-cue" aria-hidden="true">
-          <span className="collision-hero__scroll-line" />
-          Scroll to begin
-        </div>
-      </div>
-
-      <div ref={contentRef} className="collision-hero__content">
-        <p className="collision-hero__eyebrow">DIGITAL GROWTH, BUILT TO LAST</p>
-        <p className="collision-hero__copy">
-          Strategy, search, creative, and performance systems engineered to move brands forward.
-        </p>
-        <Link href="#contact" className="collision-hero__cta">
-          Start a project <span aria-hidden="true">{"\u2197"}</span>
-        </Link>
-      </div>
     </section>
   );
 }
-
