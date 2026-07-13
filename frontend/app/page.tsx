@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import Navbar from "./components/Navbar";
 import BigwigWebGL from "./components/BigwigWebGL";
+import CollisionHero from "./components/CollisionHero";
 import Footer from "./components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -788,7 +789,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative grid min-h-screen place-items-center overflow-hidden px-5 text-center">
+      <section
+        id="contact"
+        className="relative grid min-h-screen place-items-center overflow-hidden px-5 text-center"
+      >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(101,188,79,0.26),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(239,51,70,0.2),transparent_28%)]" />
 
         <div data-reveal className="relative max-w-5xl">
@@ -823,6 +827,7 @@ export default function Home() {
         </div>
       </section>
 
+      <CollisionHero />
       <Footer />
     </main>
   );
