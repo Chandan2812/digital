@@ -13,12 +13,12 @@ import Footer from "./components/Footer";
 gsap.registerPlugin(ScrollTrigger);
 
 const typingWords = [
-  "Website Development",
-  "Search Engine Optimization",
-  "Social Media Marketing",
-  "Performance Marketing",
-  "Online Reputation Management",
-  "Email Marketing",
+  "SEO That Drives Organic Growth",
+  "Websites That Convert Visitors",
+  "Google & Meta Ads That Generate Leads",
+  "Social Media That Builds Brands",
+  "Data-Driven Marketing Strategies",
+  "Growth Backed By Analytics",
 ];
 const services = [
   [
@@ -71,24 +71,126 @@ const services = [
   ],
 ];
 const projects = [
-  "SEO Growth Dashboard",
-  "Performance Ad Funnel",
-  "Lead-Gen Website",
-  "ORM Monitoring System",
+  {
+    title: "Website Development",
+    description:
+      "High-converting, fast and responsive websites designed to generate more enquiries.",
+  },
+  {
+    title: "Search Engine Optimization",
+    description:
+      "Improve Google rankings, organic traffic and long-term online visibility.",
+  },
+  {
+    title: "Performance Marketing",
+    description:
+      "Google Ads and Meta campaigns focused on maximizing ROI and lead generation.",
+  },
+  {
+    title: "Social Media Marketing",
+    description:
+      "Creative campaigns that increase engagement, brand awareness and customer acquisition.",
+  },
+  {
+    title: "Online Reputation Management",
+    description:
+      "Build trust by improving reviews, brand perception and search visibility.",
+  },
+  {
+    title: "Brand Strategy",
+    description:
+      "Create a consistent brand identity that connects with your target audience.",
+  },
 ];
 const faqs = [
   [
-    "Can Bigwig Media handle complete digital growth?",
-    "Yes. The service flow covers website development, SEO, social, performance ads, ORM, creatives and email marketing.",
+    "What digital marketing services does Bigwig Media offer?",
+    "We provide complete digital marketing solutions including Website Development, Search Engine Optimization (SEO), Google Ads, Meta Ads, Social Media Marketing, Online Reputation Management, Branding, Content Marketing and Email Marketing.",
   ],
   [
-    "Which businesses is this best for?",
-    "It works for local businesses, service brands, D2C, real estate, healthcare, education and companies that need better leads.",
+    "How do you create a marketing strategy for my business?",
+    "We begin by understanding your business, competitors, target audience and goals. Based on this research, we build a customized strategy designed to generate qualified leads, increase visibility and maximize return on investment.",
   ],
   [
-    "Can real case studies and client logos be added?",
-    "Yes. The portfolio, testimonials and results sections are ready for actual brand assets and performance numbers.",
+    "How long does it take to see results?",
+    "Paid advertising can start generating leads within days, while SEO typically shows measurable improvements within 3 to 6 months. Every business and industry has different timelines, and we provide transparent progress reports throughout the campaign.",
   ],
+  [
+    "Will I receive regular reports on campaign performance?",
+    "Yes. We provide detailed performance reports with key metrics such as website traffic, leads, conversions, keyword rankings and campaign performance so you always know how your marketing investment is performing.",
+  ],
+  [
+    "Do you work with businesses from different industries?",
+    "Yes. We work with startups, local businesses, manufacturers, healthcare, education, real estate, e-commerce and service-based companies. Every strategy is customized to fit your industry and business goals.",
+  ],
+  [
+    "Why should I choose Bigwig Media over other agencies?",
+    "We focus on measurable business growth rather than vanity metrics. Our team combines strategy, creativity, technology and performance marketing to help businesses generate more qualified leads, improve online visibility and achieve sustainable long-term growth.",
+  ],
+];
+
+const stats = [
+  {
+    value: "250+",
+    label: "Projects Delivered",
+  },
+  {
+    value: "95%",
+    label: "Client Retention",
+  },
+  {
+    value: "12+",
+    label: "Industries Served",
+  },
+  {
+    value: "8+",
+    label: "Years Experience",
+  },
+  {
+    value: "15+",
+    label: "Marketing Experts",
+  },
+  {
+    value: "24/7",
+    label: "Support",
+  },
+];
+
+const features = [
+  {
+    title: "SEO Strategy",
+    desc: "Rank higher and attract qualified organic traffic.",
+  },
+  {
+    title: "Performance Ads",
+    desc: "Google & Meta campaigns focused on measurable ROI.",
+  },
+  {
+    title: "Creative Content",
+    desc: "Content that builds trust and converts visitors.",
+  },
+  {
+    title: "Data Analytics",
+    desc: "Track every click, lead and marketing performance.",
+  },
+];
+
+const testimonials = [
+  {
+    role: "Manufacturing Company",
+    quote:
+      "Bigwig Media completely transformed our online presence. Our new website and SEO strategy brought us more qualified enquiries than ever before.",
+  },
+  {
+    role: "Healthcare Brand",
+    quote:
+      "Their Google Ads and social media campaigns consistently generated high-quality leads while keeping our advertising budget efficient.",
+  },
+  {
+    role: "E-commerce Business",
+    quote:
+      "From branding to performance marketing, the team delivered measurable growth with clear reporting and excellent communication throughout the project.",
+  },
 ];
 
 function useCinematicMotion() {
@@ -312,7 +414,7 @@ function TypingLine() {
 export default function Home() {
   useCinematicMotion();
   const story = useMemo(
-    () => "Your customers don't buy products. They buy emotions.",
+    () => "WE DON'T SELL MARKETING. WE BUILD BUSINESS GROWTH.",
     [],
   );
   const storyLetters = story.split("");
@@ -335,22 +437,35 @@ export default function Home() {
         <div className="hero-title relative z-10 grid h-full place-items-center px-5 text-center">
           <div>
             <p className="mb-6 text-xs font-black uppercase tracking-[0.35em] text-[#65BC4F]">
-              Bigwig Media
+              BIGWIG MEDIA • DIGITAL GROWTH PARTNER
             </p>
+
             <h1 className="mx-auto max-w-6xl text-5xl font-black uppercase leading-[0.86] tracking-normal md:text-6xl lg:text-[6rem]">
-              We Don&apos;t Just Run Ads.
+              WE HELP BUSINESSES
               <br />
-              We Build Growth Systems.
+              ATTRACT MORE CUSTOMERS,
+              <br />
+              GENERATE MORE LEADS.
             </h1>
-            <p className="mt-8 text-lg font-bold uppercase tracking-[0.18em] text-white/70">
+
+            <p className="mx-auto mt-8 max-w-3xl text-base font-medium leading-8 text-white/70 md:text-lg">
+              We build high-converting websites, rank businesses on Google, run
+              performance-driven advertising campaigns, and create digital
+              marketing strategies that deliver measurable business growth.
+            </p>
+
+            <p className="mt-8 text-lg font-bold uppercase tracking-[0.18em] text-[#65BC4F]">
               <TypingLine />
             </p>
           </div>
         </div>
         <div className="hero-next-signal absolute inset-x-0 bottom-12 z-10 translate-y-16 scale-95 px-5 text-center opacity-0">
-          <p className="mx-auto max-w-3xl text-3xl font-black uppercase leading-none md:text-6xl">
-            Scroll through the strategy, services and systems behind serious
-            digital growth.
+          <p className="mx-auto max-w-5xl text-3xl font-black uppercase leading-[0.9] md:text-6xl">
+            DISCOVER HOW WE TURN
+            <br />
+            IDEAS INTO CUSTOMERS,
+            <br />
+            AND STRATEGIES INTO GROWTH.
           </p>
         </div>
       </section>
@@ -360,12 +475,14 @@ export default function Home() {
         className="story-scene relative min-h-screen overflow-hidden px-5 py-32 md:px-10 lg:px-16"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(239,51,70,0.18),transparent_30%),radial-gradient(circle_at_80%_80%,rgba(101,188,79,0.16),transparent_32%)]" />
+
         <p
           data-reveal
           className="relative text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]"
         >
-          Customer psychology
+          OUR PHILOSOPHY
         </p>
+
         <h2 className="relative mt-10 max-w-7xl text-6xl font-black uppercase leading-[0.88] tracking-normal md:text-8xl lg:text-[10rem]">
           {storyLetters.map((letter, index) => (
             <span
@@ -376,6 +493,16 @@ export default function Home() {
             </span>
           ))}
         </h2>
+
+        <p
+          data-reveal
+          className="relative mt-16 max-w-4xl text-lg leading-9 text-white/70 md:text-2xl"
+        >
+          Every successful business needs more than just traffic or followers.
+          It needs a strategy that attracts the right audience, builds trust,
+          converts visitors into customers, and creates sustainable growth.
+          That's exactly what we build.
+        </p>
       </section>
 
       <section
@@ -386,11 +513,24 @@ export default function Home() {
         <div className="relative grid min-h-[70vh] items-end gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div data-reveal>
             <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
-              Digital marketing command center
+              WHY BIGWIG MEDIA
             </p>
+
             <h2 className="mt-8 text-5xl font-black uppercase leading-[0.9] md:text-7xl">
-              Strategy, creative, media and tracking working together.
+              EVERY CAMPAIGN.
+              <br />
+              EVERY CLICK.
+              <br />
+              EVERY RESULT.
             </h2>
+
+            <p className="mt-8 max-w-xl text-lg leading-8 text-white/65">
+              We combine strategy, creativity, technology and performance
+              marketing to help businesses attract the right audience, generate
+              qualified leads and achieve measurable growth. Every decision is
+              backed by data, every campaign is optimized for results, and every
+              client receives a strategy tailored to their business goals.
+            </p>
           </div>
           <div
             data-reveal
@@ -398,12 +538,18 @@ export default function Home() {
           >
             <div className="absolute inset-5 bg-[linear-gradient(135deg,rgba(255,255,255,0.18),transparent_26%),radial-gradient(circle_at_25%_65%,rgba(101,188,79,0.32),transparent_22%),radial-gradient(circle_at_76%_35%,rgba(239,51,70,0.28),transparent_20%)]" />
             <div className="relative grid h-full grid-cols-2 gap-4">
-              {["SEO", "Ads", "Content", "Analytics"].map((item) => (
+              {features.map((item) => (
                 <div
-                  key={item}
-                  className="grid place-items-end border border-white/10 bg-white/[0.03] p-5 text-2xl font-black uppercase"
+                  key={item.title}
+                  className="flex flex-col justify-end border border-white/10 bg-white/[0.03] p-5"
                 >
-                  {item}
+                  <h3 className="text-2xl font-black uppercase">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-6 text-white/60">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -457,11 +603,23 @@ export default function Home() {
         <div className="grid h-full items-center gap-10 lg:grid-cols-[0.7fr_1.3fr]">
           <div data-reveal>
             <p className="text-xs font-black uppercase tracking-[0.32em] text-[#155b9e]">
-              Growth showcase
+              OUR EXPERTISE
             </p>
+
             <h2 className="mt-8 text-5xl font-black uppercase leading-[0.9] md:text-7xl">
-              Scroll the dashboard. Marketing systems change automatically.
+              EVERYTHING YOUR
+              <br />
+              BUSINESS NEEDS
+              <br />
+              TO GROW ONLINE.
             </h2>
+
+            <p className="mt-8 max-w-lg text-lg leading-8 text-black/70">
+              From building powerful websites to generating qualified leads
+              through SEO, paid advertising and social media, we deliver
+              complete digital marketing solutions that help businesses grow
+              with confidence.
+            </p>
           </div>
           <div className="mx-auto w-full max-w-4xl">
             <div className="rounded-[34px] border-[14px] border-[#111] bg-[#050505] p-4 shadow-2xl">
@@ -469,18 +627,19 @@ export default function Home() {
                 <div className="portfolio-screen-inner grid gap-4 p-5">
                   {projects.concat(projects).map((project, index) => (
                     <div
-                      key={`${project}-${index}`}
+                      key={`${project.title}-${index}`}
                       className="min-h-64 border border-white/10 bg-[radial-gradient(circle_at_20%_20%,rgba(101,188,79,0.22),transparent_30%),linear-gradient(135deg,#101010,#050505)] p-6 text-white"
                     >
                       <span className="text-xs font-black uppercase tracking-[0.24em] text-[#65BC4F]">
-                        Case {index + 1}
+                        Our Expertise
                       </span>
+
                       <h3 className="mt-10 text-5xl font-black uppercase leading-none">
-                        {project}
+                        {project.title}
                       </h3>
+
                       <p className="mt-4 text-white/55">
-                        Website, SEO, ads, content and reporting built as one
-                        measurable growth system.
+                        {project.description}
                       </p>
                     </div>
                   ))}
@@ -499,22 +658,35 @@ export default function Home() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div data-reveal>
             <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
-              Marketing results
+              RESULTS THAT MATTER
             </p>
+
             <h2 className="mt-8 text-5xl font-black uppercase leading-[0.9] md:text-7xl">
-              Growth visibility across markets, channels and customer journeys.
+              DIGITAL STRATEGIES
+              <br />
+              THAT CREATE
+              <br />
+              REAL BUSINESS GROWTH.
             </h2>
-            <div className="mt-10 grid grid-cols-3 gap-4">
-              {["India", "Dubai", "USA"].map((item) => (
+
+            <p className="mt-8 max-w-xl text-lg leading-8 text-white/65">
+              Every campaign is measured by meaningful business outcomes—not
+              vanity metrics. We focus on generating qualified leads, increasing
+              conversions, improving search visibility, and helping businesses
+              achieve sustainable long-term growth.
+            </p>
+            <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">
+              {stats.map((item) => (
                 <div
-                  key={item}
-                  className="border border-white/10 bg-white/[0.04] p-5"
+                  key={item.label}
+                  className="border border-white/10 bg-white/[0.04] p-5 transition duration-300 hover:border-[#65BC4F]/40 hover:bg-white/[0.08]"
                 >
                   <strong className="block text-4xl font-black text-[#65BC4F]">
-                    +{item.length * 17}%
+                    {item.value}
                   </strong>
-                  <span className="mt-2 block text-xs uppercase tracking-[0.18em] text-white/45">
-                    {item}
+
+                  <span className="mt-3 block text-sm uppercase tracking-[0.18em] text-white/55">
+                    {item.label}
                   </span>
                 </div>
               ))}
@@ -557,29 +729,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-5 py-28 md:px-10 lg:px-16">
-        <div className="grid gap-5 lg:grid-cols-3">
-          {["Discover", "Engineer", "Scale"].map((step, index) => (
-            <article
-              data-reveal
-              key={step}
-              className="group min-h-96 border border-white/10 bg-white/[0.035] p-8 transition hover:-translate-y-3 hover:bg-white/[0.08]"
-            >
-              <span className="text-sm font-black text-[#65BC4F]">
-                0{index + 1}
-              </span>
-              <h3 className="mt-24 text-5xl font-black uppercase leading-none">
-                {step}
-              </h3>
-              <p className="mt-5 text-white/55">
-                Research, execution and optimization move together so every
-                channel has a clear role.
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section
         id="clients"
         className="overflow-hidden bg-white px-5 py-28 text-black md:px-10 lg:px-16"
@@ -593,41 +742,73 @@ export default function Home() {
           </h2>
         </div>
         <div className="testimonial-wheel mx-auto mt-16 grid max-w-5xl gap-5 md:grid-cols-3">
-          {["Founder", "CMO", "Growth Lead"].map((role) => (
+          {testimonials.map((item) => (
             <div
-              key={role}
-              className="min-h-72 border border-black/10 bg-[#f7f7f7] p-6 shadow-xl"
+              key={item.role}
+              className="min-h-72 border border-black/10 bg-[#f7f7f7] p-6 shadow-xl transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
               <span className="text-xs font-black uppercase tracking-[0.2em] text-[#155b9e]">
-                {role}
+                {item.role}
               </span>
-              <p className="mt-20 text-2xl font-black uppercase leading-tight">
-                The strategy was clear, the creatives were strong, and the leads
-                became easier to track.
+
+              <p className="mt-10 text-xl font-bold leading-9 text-black">
+                "{item.quote}"
               </p>
             </div>
           ))}
         </div>
       </section>
 
-      <section id="blogs" className="px-5 py-28 md:px-10 lg:px-16">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <h2
-            data-reveal
-            className="text-5xl font-black uppercase leading-none md:text-7xl"
-          >
-            Questions brands ask before choosing Bigwig Media.
-          </h2>
-          <div className="grid gap-4">
-            {faqs.map(([q, a]) => (
+      <section
+        id="faqs"
+        className="relative overflow-hidden px-5 py-28 md:px-10 lg:px-16"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(101,188,79,0.08),transparent_30%),radial-gradient(circle_at_80%_80%,rgba(21,91,158,0.08),transparent_30%)]" />
+
+        <div className="relative grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
+          <div data-reveal>
+            <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
+              Frequently Asked Questions
+            </p>
+
+            <h2 className="mt-8 text-5xl font-black uppercase leading-[0.9] md:text-7xl">
+              EVERYTHING YOU
+              <br />
+              NEED TO KNOW
+              <br />
+              BEFORE WORKING
+              <br />
+              WITH US.
+            </h2>
+
+            <p className="mt-8 max-w-lg text-lg leading-8 text-white/65">
+              Choosing the right digital marketing partner is an important
+              decision. Here are answers to the questions businesses ask us
+              before starting their growth journey with Bigwig Media.
+            </p>
+          </div>
+
+          <div className="grid gap-5">
+            {faqs.map(([q, a], index) => (
               <details
                 key={q}
-                className="group border border-white/10 bg-white/[0.04] p-6 open:bg-white/[0.08]"
+                className="group rounded-2xl border border-white/10 bg-white/[0.04] transition-all duration-300 open:border-[#65BC4F]/40 open:bg-white/[0.08]"
               >
-                <summary className="cursor-pointer text-2xl font-black uppercase">
-                  {q}
+                <summary className="flex cursor-pointer list-none items-center justify-between p-6">
+                  <span className="pr-6 text-xl font-black uppercase leading-8 md:text-2xl">
+                    {q}
+                  </span>
+
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 text-xl text-[#65BC4F] transition-transform duration-300 group-open:rotate-45">
+                    +
+                  </span>
                 </summary>
-                <p className="mt-5 text-white/55">{a}</p>
+
+                <div className="px-6 pb-6">
+                  <div className="mb-5 h-px w-full bg-white/10" />
+
+                  <p className="text-base leading-8 text-white/70">{a}</p>
+                </div>
               </details>
             ))}
           </div>
@@ -636,15 +817,36 @@ export default function Home() {
 
       <section className="relative grid min-h-screen place-items-center overflow-hidden px-5 text-center">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(101,188,79,0.26),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(239,51,70,0.2),transparent_28%)]" />
-        <div data-reveal className="relative">
+
+        <div data-reveal className="relative max-w-5xl">
           <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
-            Growth CTA
+            LET'S GROW YOUR BUSINESS
           </p>
-          <h2 className="mt-8 text-7xl font-black uppercase leading-[0.82] md:text-[10rem]">
-            Ready To
+
+          <h2 className="mt-8 text-6xl font-black uppercase leading-[0.82] md:text-[9rem]">
+            READY TO
             <br />
-            Dominate?
+            GROW
+            <br />
+            TOGETHER?
           </h2>
+
+          <p className="mx-auto mt-10 max-w-3xl text-lg leading-8 text-white/70 md:text-xl">
+            Whether you're launching a new business or looking to scale your
+            existing brand, our team is ready to build a digital marketing
+            strategy that delivers measurable growth, qualified leads and
+            long-term success.
+          </p>
+
+          <div className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
+            <button className="rounded-full bg-[#65BC4F] px-8 py-4 text-sm font-black uppercase tracking-[0.18em] text-black transition hover:scale-105 hover:bg-white">
+              Book Free Consultation
+            </button>
+
+            <button className="rounded-full border border-white/20 px-8 py-4 text-sm font-black uppercase tracking-[0.18em] transition hover:border-[#65BC4F] hover:bg-white/10">
+              Get Free Marketing Audit
+            </button>
+          </div>
         </div>
       </section>
 
