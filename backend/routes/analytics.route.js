@@ -1,0 +1,20 @@
+const express = require("express");
+const router = express.Router();
+
+const analyticsController = require("../controllers/analytics.controller");
+
+router.get("/overview", analyticsController.overview);
+router.get("/visitors-chart", analyticsController.visitorsChart);
+router.get("/top-pages", analyticsController.topPages);
+router.get("/cities", analyticsController.cityVisitors);
+router.get("/traffic-sources", analyticsController.trafficSources);
+router.get("/countries", analyticsController.countryVisitors);
+router.get("/devices", analyticsController.deviceBreakdown);
+router.get("/browsers", analyticsController.browserBreakdown);
+router.get("/new-vs-returning", analyticsController.newVsReturning);
+router.get("/realtime", analyticsController.realtime);
+router.get("/conversions", analyticsController.conversions);
+router.get("/search-console", analyticsController.searchConsole);
+router.get("/search-console/sites", analyticsController.searchConsoleSites);
+
+module.exports = router;
