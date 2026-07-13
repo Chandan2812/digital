@@ -441,18 +441,12 @@ export default function Home() {
             </p>
 
             <h1 className="mx-auto max-w-6xl text-5xl font-black uppercase leading-[0.86] tracking-normal md:text-6xl lg:text-[6rem]">
-              WE HELP BUSINESSES
+              DISCOVER HOW WE TURN
               <br />
-              ATTRACT MORE CUSTOMERS,
+              IDEAS INTO CUSTOMERS,
               <br />
-              GENERATE MORE LEADS.
+              AND STRATEGIES INTO GROWTH.
             </h1>
-
-            <p className="mx-auto mt-8 max-w-3xl text-base font-medium leading-8 text-white/70 md:text-lg">
-              We build high-converting websites, rank businesses on Google, run
-              performance-driven advertising campaigns, and create digital
-              marketing strategies that deliver measurable business growth.
-            </p>
 
             <p className="mt-8 text-lg font-bold uppercase tracking-[0.18em] text-[#65BC4F]">
               <TypingLine />
@@ -461,11 +455,11 @@ export default function Home() {
         </div>
         <div className="hero-next-signal absolute inset-x-0 bottom-12 z-10 translate-y-16 scale-95 px-5 text-center opacity-0">
           <p className="mx-auto max-w-5xl text-3xl font-black uppercase leading-[0.9] md:text-6xl">
-            DISCOVER HOW WE TURN
+            SEE HOW WE PLAN,
             <br />
-            IDEAS INTO CUSTOMERS,
+            EXECUTE &
             <br />
-            AND STRATEGIES INTO GROWTH.
+            SCALE DIGITAL GROWTH.
           </p>
         </div>
       </section>
@@ -523,14 +517,6 @@ export default function Home() {
               <br />
               EVERY RESULT.
             </h2>
-
-            <p className="mt-8 max-w-xl text-lg leading-8 text-white/65">
-              We combine strategy, creativity, technology and performance
-              marketing to help businesses attract the right audience, generate
-              qualified leads and achieve measurable growth. Every decision is
-              backed by data, every campaign is optimized for results, and every
-              client receives a strategy tailored to their business goals.
-            </p>
           </div>
           <div
             data-reveal
@@ -613,13 +599,6 @@ export default function Home() {
               <br />
               TO GROW ONLINE.
             </h2>
-
-            <p className="mt-8 max-w-lg text-lg leading-8 text-black/70">
-              From building powerful websites to generating qualified leads
-              through SEO, paid advertising and social media, we deliver
-              complete digital marketing solutions that help businesses grow
-              with confidence.
-            </p>
           </div>
           <div className="mx-auto w-full max-w-4xl">
             <div className="rounded-[34px] border-[14px] border-[#111] bg-[#050505] p-4 shadow-2xl">
@@ -669,12 +648,6 @@ export default function Home() {
               REAL BUSINESS GROWTH.
             </h2>
 
-            <p className="mt-8 max-w-xl text-lg leading-8 text-white/65">
-              Every campaign is measured by meaningful business outcomes—not
-              vanity metrics. We focus on generating qualified leads, increasing
-              conversions, improving search visibility, and helping businesses
-              achieve sustainable long-term growth.
-            </p>
             <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">
               {stats.map((item) => (
                 <div
