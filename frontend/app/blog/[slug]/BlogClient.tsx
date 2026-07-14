@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { ContactPopupButton } from "@/app/components/ContactPopup";
 import Footer from "@/app/components/Footer";
 import HeroGalaxy from "@/app/components/HeroGalaxy";
 import Navbar from "@/app/components/Navbar";
@@ -258,14 +259,13 @@ export default function BlogClient({
                   Share your website, market and growth goal. We will help map
                   the next practical digital move.
                 </p>
-                <Link
-                  href="/contact"
+                <ContactPopupButton
                   className="mt-6 inline-flex items-center gap-3 rounded-full bg-[#65BC4F] px-6 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] transition hover:-translate-y-1 hover:bg-[#7DDC62]"
                   style={{ color: "#050505" }}
                 >
                   Start a Brief
                   <ArrowUpRight className="h-4 w-4" />
-                </Link>
+                </ContactPopupButton>
               </div>
 
               {relatedBlogs?.length ? (

@@ -10,7 +10,7 @@ import {
   ShieldCheck,
   Share2,
 } from "lucide-react";
-import Link from "next/link";
+import { ContactPopupButton } from "../components/ContactPopup";
 import Footer from "../components/Footer";
 import HeroGalaxy from "../components/HeroGalaxy";
 import Navbar from "../components/Navbar";
@@ -123,13 +123,12 @@ export default function ServicesPage() {
               growth.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Link
-                href="/contact"
+              <ContactPopupButton
                 className="inline-flex justify-center rounded-full bg-[#65BC4F] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] shadow-[0_0_30px_rgba(101,188,79,0.45)] transition hover:-translate-y-1 hover:bg-[#7DDC62]"
                 style={{ color: "#050505" }}
               >
                 Start a Project
-              </Link>
+              </ContactPopupButton>
               <a
                 href="#website-development"
                 className="inline-flex justify-center rounded-full border border-white/20 bg-white/[0.04] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] transition hover:-translate-y-1 hover:border-[#65BC4F]/70 hover:bg-white/[0.08]"
@@ -251,13 +250,12 @@ export default function ServicesPage() {
           <h2 className="mt-8 text-5xl font-black uppercase leading-[0.86] md:text-8xl lg:text-[8rem]">
             Let&apos;s build the right service plan.
           </h2>
-          <Link
-            href="/contact"
+          <ContactPopupButton
             className="mt-10 inline-flex rounded-full bg-[#65BC4F] px-8 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] shadow-[0_0_30px_rgba(101,188,79,0.42)] transition hover:-translate-y-1 hover:bg-[#7DDC62]"
             style={{ color: "#050505" }}
           >
             Book Free Consultation
-          </Link>
+          </ContactPopupButton>
         </div>
       </section>
 

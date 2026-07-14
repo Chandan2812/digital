@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ContactPopupButton } from "./ContactPopup";
 
 const serviceLinks = [
   [
@@ -81,13 +82,12 @@ export default function Footer() {
             that want measurable enquiries.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/contact"
+            <ContactPopupButton
               className="magnetic inline-flex justify-center rounded-full border border-[#65BC4F]/60 bg-[#65BC4F] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] shadow-[0_0_30px_rgba(101,188,79,0.48)] transition hover:bg-[#7DDC62] hover:text-[#050505]"
               style={{ color: "#050505" }}
             >
               Book a Growth Call
-            </Link>
+            </ContactPopupButton>
             <Link
               href="/services"
               className="inline-flex justify-center rounded-full border border-white/15 bg-white px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] transition hover:bg-[#65BC4F] hover:text-[#050505]"

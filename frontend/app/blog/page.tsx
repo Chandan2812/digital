@@ -4,6 +4,7 @@ import { ArrowUpRight, CalendarDays, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { ContactPopupButton } from "../components/ContactPopup";
 import Footer from "../components/Footer";
 import HeroGalaxy from "../components/HeroGalaxy";
 import Navbar from "../components/Navbar";
@@ -214,13 +215,12 @@ export default function BlogPage() {
                   Articles
                 </span>
               </div>
-              <Link
-                href="/contact"
+              <ContactPopupButton
                 className="flex items-center justify-center border border-[#65BC4F]/45 bg-[#65BC4F] px-4 py-3 text-center text-xs font-black uppercase tracking-[0.16em] text-[#050505] transition hover:bg-[#7DDC62]"
                 style={{ color: "#050505" }}
               >
                 Start Brief
-              </Link>
+              </ContactPopupButton>
             </div>
           </div>
         </div>

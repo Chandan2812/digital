@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import Link from "next/link";
 import { useEffect } from "react";
+import ContactForm, { contactServices } from "../components/ContactForm";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -30,17 +31,6 @@ const contactCards = [
     href: "mailto:hello@bigwigmedia.in",
     copy: "Expect a clear reply with next steps, not a generic acknowledgement.",
   },
-];
-
-const services = [
-  "Website Development",
-  "SEO",
-  "Google Ads",
-  "Meta Ads",
-  "Social Media",
-  "ORM",
-  "Branding",
-  "Email Marketing",
 ];
 
 function useContactMotion() {
@@ -181,7 +171,7 @@ export default function ContactPage() {
 
       <section className="overflow-hidden border-y border-white/10 bg-white py-8 text-black">
         <div className="service-marquee flex w-max gap-4 px-5">
-          {services.concat(services).map((service, index) => (
+          {contactServices.concat(contactServices).map((service, index) => (
             <span
               key={`${service}-${index}`}
               className="shrink-0 border border-black/10 bg-[#f5f5f5] px-7 py-4 text-sm font-black uppercase tracking-[0.2em] text-black/62 transition hover:border-[#65BC4F] hover:bg-[#65BC4F] hover:text-[#050505]"
@@ -209,88 +199,9 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <form
-            data-contact-reveal
-            className="grid gap-4 border border-white/12 bg-white/[0.04] p-5 backdrop-blur-xl md:p-7"
-            action="mailto:hello@bigwigmedia.in"
-            method="post"
-            encType="text/plain"
-          >
-            <div className="grid gap-4 md:grid-cols-2">
-              <label className="grid gap-2">
-                <span className="text-xs font-black uppercase tracking-[0.18em] text-white/58">
-                  Name
-                </span>
-                <input
-                  className="h-14 border border-white/10 bg-black/35 px-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#65BC4F]"
-                  name="name"
-                  placeholder="Your name"
-                  required
-                />
-              </label>
-              <label className="grid gap-2">
-                <span className="text-xs font-black uppercase tracking-[0.18em] text-white/58">
-                  Email
-                </span>
-                <input
-                  className="h-14 border border-white/10 bg-black/35 px-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#65BC4F]"
-                  name="email"
-                  placeholder="you@company.com"
-                  required
-                  type="email"
-                />
-              </label>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              <label className="grid gap-2">
-                <span className="text-xs font-black uppercase tracking-[0.18em] text-white/58">
-                  Phone
-                </span>
-                <input
-                  className="h-14 border border-white/10 bg-black/35 px-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#65BC4F]"
-                  name="phone"
-                  placeholder="+91"
-                />
-              </label>
-              <label className="grid gap-2">
-                <span className="text-xs font-black uppercase tracking-[0.18em] text-white/58">
-                  Service
-                </span>
-                <select
-                  className="h-14 border border-white/10 bg-black/35 px-4 text-white outline-none transition focus:border-[#65BC4F]"
-                  name="service"
-                  defaultValue=""
-                >
-                  <option value="" disabled>
-                    Choose a service
-                  </option>
-                  {services.map((service) => (
-                    <option key={service} value={service}>
-                      {service}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-            <label className="grid gap-2">
-              <span className="text-xs font-black uppercase tracking-[0.18em] text-white/58">
-                Project Goal
-              </span>
-              <textarea
-                className="min-h-40 resize-y border border-white/10 bg-black/35 px-4 py-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#65BC4F]"
-                name="message"
-                placeholder="Tell us what you want to improve..."
-                required
-              />
-            </label>
-            <button
-              className="mt-2 inline-flex justify-center rounded-full bg-[#65BC4F] px-8 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] shadow-[0_0_30px_rgba(101,188,79,0.42)] transition hover:-translate-y-1 hover:bg-[#7DDC62]"
-              type="submit"
-              style={{ color: "#050505" }}
-            >
-              Send Brief
-            </button>
-          </form>
+          <div data-contact-reveal>
+            <ContactForm />
+          </div>
         </div>
       </section>
 
