@@ -205,7 +205,7 @@ export default function ClientsPage() {
           </div>
 
           <motion.div
-            className="grid gap-4 sm:grid-cols-2"
+            className="grid min-w-0 gap-4 sm:grid-cols-2"
             initial={{ y: 34, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.36, duration: 0.8 }}
@@ -213,12 +213,12 @@ export default function ClientsPage() {
             {metrics.map(([value, label]) => (
               <div
                 key={label}
-                className="border border-white/10 bg-white/[0.045] p-5 backdrop-blur-xl transition hover:-translate-y-1 hover:border-[#65BC4F]/50 hover:bg-white/[0.07]"
+                className="min-w-0 border border-white/10 bg-white/[0.045] p-4 backdrop-blur-xl transition hover:-translate-y-1 hover:border-[#65BC4F]/50 hover:bg-white/[0.07] sm:p-5"
               >
-                <strong className="block text-5xl font-black text-[#65BC4F]">
+                <strong className="block text-4xl font-black leading-none text-[#65BC4F] sm:text-5xl">
                   {value}
                 </strong>
-                <span className="mt-3 block text-xs font-black uppercase tracking-[0.18em] text-white/58">
+                <span className="mt-3 block max-w-full whitespace-normal break-words text-[11px] font-black uppercase leading-5 tracking-[0.12em] text-white/58 sm:text-xs sm:tracking-[0.16em]">
                   {label}
                 </span>
               </div>
@@ -232,7 +232,7 @@ export default function ClientsPage() {
           {industries.concat(industries).map((industry, index) => (
             <span
               key={`${industry}-${index}`}
-              className="shrink-0 border border-black/10 bg-[#f5f5f5] px-7 py-4 text-sm font-black uppercase tracking-[0.2em] text-black/62 transition hover:border-[#65BC4F] hover:bg-[#65BC4F] hover:text-[#050505]"
+              className="max-w-[78vw] shrink-0 whitespace-normal break-words border border-black/10 bg-[#f5f5f5] px-5 py-4 text-xs font-black uppercase leading-5 tracking-[0.14em] text-black/62 transition hover:border-[#65BC4F] hover:bg-[#65BC4F] hover:text-[#050505] sm:max-w-none sm:px-7 sm:text-sm sm:tracking-[0.2em]"
             >
               {industry}
             </span>

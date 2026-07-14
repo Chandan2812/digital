@@ -6,42 +6,43 @@ import Link from "next/link";
 const serviceLinks = [
   [
     "Website Development",
-    "https://www.bigwigmediadigital.com/services/website-development-company-in-delhi",
+    "/services#website-development",
   ],
   [
     "Search Engine Optimization",
-    "https://www.bigwigmediadigital.com/services/search-engine-optimization",
+    "/services#search-engine-optimization",
   ],
   [
     "Social Media Optimization",
-    "https://www.bigwigmediadigital.com/services/social-media-optimization",
+    "/services#social-media-optimization",
   ],
   [
     "Social Media Marketing",
-    "https://www.bigwigmediadigital.com/services/social-media-marketing",
+    "/services#social-media-marketing",
   ],
   [
     "Performance Marketing",
-    "https://www.bigwigmediadigital.com/services/performance-marketing",
+    "/services#performance-marketing",
   ],
   [
     "Online Reputation Management",
-    "https://www.bigwigmediadigital.com/services/online-reputation-management",
+    "/services#online-reputation-management",
   ],
   [
     "Graphic Designing & Video Editing",
-    "https://www.bigwigmediadigital.com/services/graphic-designing",
+    "/services#graphic-designing-video-editing",
   ],
   [
     "Email Marketing",
-    "https://www.bigwigmediadigital.com/services/email-marketing",
+    "/services#email-marketing",
   ],
 ];
 
 const quickLinks = [
   ["Home", "/"],
   ["About", "/about"],
-  ["Services", "/#services"],
+  ["Services", "/services"],
+  ["Blog", "/blog"],
   ["Clients", "/clients"],
   ["Contact", "/contact"],
 ];
@@ -88,7 +89,7 @@ export default function Footer() {
               Book a Growth Call
             </Link>
             <Link
-              href="/#services"
+              href="/services"
               className="inline-flex justify-center rounded-full border border-white/15 bg-white px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] transition hover:bg-[#65BC4F] hover:text-[#050505]"
               style={{ color: "#050505" }}
             >
@@ -104,7 +105,7 @@ export default function Footer() {
             </p>
             <div className="mt-5 grid gap-3 text-sm text-white/62">
               {serviceLinks.map(([label, href]) => (
-                <a
+                <Link
                   className="group flex items-center justify-between gap-4 transition hover:text-[#65BC4F]"
                   href={href}
                   key={label}
@@ -113,7 +114,7 @@ export default function Footer() {
                   <span className="text-white/25 transition group-hover:translate-x-1 group-hover:text-[#65BC4F]">
                     -&gt;
                   </span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
