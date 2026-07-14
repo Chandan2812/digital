@@ -5,7 +5,7 @@
 ▲ Next.js 16.2.10 (Turbopack)
 - Local:         http://127.0.0.1:3000
 - Network:       http://127.0.0.1:3000
-✓ Ready in 2.2s
+✓ Ready in 1642ms
 Creating turbopack project { dir: 'D:\\office\\digital\\frontend', testMode: true }
 
-[?25h
+ GET /about 200 in 6.1s (next.js: 1232ms, application-code: 4.9s)

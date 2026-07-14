@@ -7,6 +7,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import ContactForm from "./ContactForm";
@@ -30,24 +31,33 @@ export function useContactPopup() {
 
 export function ContactPopupProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const popupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) return;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    const popup = popupRef.current;
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpen(false);
       }
     };
+    const stopPopupScroll = (event: Event) => {
+      event.stopPropagation();
+    };
 
     window.addEventListener("keydown", onKeyDown);
+    popup?.addEventListener("wheel", stopPopupScroll, { passive: false });
+    popup?.addEventListener("touchmove", stopPopupScroll, { passive: false });
 
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
+      popup?.removeEventListener("wheel", stopPopupScroll);
+      popup?.removeEventListener("touchmove", stopPopupScroll);
     };
   }, [open]);
 
@@ -82,7 +92,11 @@ export function ContactPopupProvider({ children }: { children: ReactNode }) {
         />
 
         <div
-          className={`relative mx-auto flex max-h-[calc(100dvh-1.5rem)] min-h-0 w-full max-w-4xl flex-col overflow-hidden border border-white/12 bg-[#070707] p-4 text-white shadow-2xl shadow-black/70 transition duration-300 sm:max-h-[calc(100dvh-3rem)] md:max-h-[calc(100dvh-4rem)] md:p-7 ${
+          ref={popupRef}
+          data-lenis-prevent
+          data-lenis-prevent-wheel
+          data-lenis-prevent-touch
+          className={`relative mx-auto max-h-[calc(100dvh-1.5rem)] w-full max-w-4xl overflow-y-auto overscroll-contain border border-white/12 bg-[#070707] p-4 text-white shadow-2xl shadow-black/70 transition duration-300 sm:max-h-[calc(100dvh-3rem)] md:max-h-[calc(100dvh-4rem)] md:p-7 ${
             open ? "translate-y-0 scale-100" : "translate-y-8 scale-95"
           }`}
         >
@@ -115,7 +129,7 @@ export function ContactPopupProvider({ children }: { children: ReactNode }) {
             </button>
           </div>
 
-          <ContactForm className="relative min-h-0 flex-1 overflow-y-auto border-white/10 bg-black/30" />
+          <ContactForm className="relative border-white/10 bg-black/30" />
         </div>
       </div>
     </ContactPopupContext.Provider>
