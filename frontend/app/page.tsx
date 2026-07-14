@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import Navbar from "./components/Navbar";
 import BigwigWebGL from "./components/BigwigWebGL";
+import { ContactPopupButton } from "./components/ContactPopup";
 import Footer from "./components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -821,13 +822,13 @@ export default function Home() {
           </p>
 
           <div className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
-            <button className="rounded-full bg-[#65BC4F] px-8 py-4 text-sm font-black uppercase tracking-[0.18em] text-black transition hover:scale-105 hover:bg-white">
+            <ContactPopupButton className="rounded-full bg-[#65BC4F] px-8 py-4 text-sm font-black uppercase tracking-[0.18em] text-black transition hover:scale-105 hover:bg-white">
               Book Free Consultation
-            </button>
+            </ContactPopupButton>
 
-            <button className="rounded-full border border-white/20 px-8 py-4 text-sm font-black uppercase tracking-[0.18em] transition hover:border-[#65BC4F] hover:bg-white/10">
+            <ContactPopupButton className="rounded-full border border-white/20 px-8 py-4 text-sm font-black uppercase tracking-[0.18em] transition hover:border-[#65BC4F] hover:bg-white/10">
               Get Free Marketing Audit
-            </button>
+            </ContactPopupButton>
           </div>
         </div>
       </section>

@@ -9,6 +9,7 @@ import Lenis from "lenis";
 import Link from "next/link";
 import { useEffect, useMemo, useRef } from "react";
 import type { Group } from "three";
+import { ContactPopupButton } from "../components/ContactPopup";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -396,13 +397,12 @@ export default function AboutPage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.28, duration: 0.7 }}
           >
-            <a
+            <ContactPopupButton
               className="inline-flex justify-center rounded-full bg-[#65BC4F] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] shadow-[0_0_30px_rgba(101,188,79,0.45)] transition hover:-translate-y-1 hover:bg-[#7DDC62]"
-              href="#contact"
               style={{ color: "#050505" }}
             >
               Book Free Consultation
-            </a>
+            </ContactPopupButton>
             <Link
               className="inline-flex justify-center rounded-full border border-white/20 bg-white/[0.04] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] transition hover:-translate-y-1 hover:border-[#65BC4F]/70 hover:bg-white/[0.08]"
               href="/#work"
@@ -593,13 +593,12 @@ export default function AboutPage() {
             presence that feels premium, Bigwig Media builds the system to get
             you there.
           </p>
-          <a
-            href="#contact"
+          <ContactPopupButton
             className="mt-10 inline-flex rounded-full bg-[#65BC4F] px-8 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] shadow-[0_0_30px_rgba(101,188,79,0.42)] transition hover:-translate-y-1 hover:bg-[#7DDC62]"
             style={{ color: "#050505" }}
           >
             Book Free Consultation
-          </a>
+          </ContactPopupButton>
         </div>
       </section>
 
