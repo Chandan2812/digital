@@ -1,6 +1,6 @@
 "use client";
 
-import { Float, Line, MeshDistortMaterial, Stars } from "@react-three/drei";
+import { Float, Line, Stars } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { motion } from "framer-motion";
 import gsap from "gsap";
@@ -99,50 +99,6 @@ const industries = [
   "IT Services",
 ];
 
-const manifesto =
-  "Strategy is the map. Creative is the signal. Data is the truth. Growth is the result.";
-
-const growthSignals = [
-  ["Search Demand", "Technical SEO, content intent and local visibility"],
-  ["Conversion Path", "Landing pages, forms, tracking and follow-up loops"],
-  ["Paid Velocity", "Google and Meta campaigns tuned for qualified enquiries"],
-  ["Brand Trust", "Social proof, review systems and premium creative assets"],
-];
-
-const playbookSteps = [
-  [
-    "01",
-    "Research the Market",
-    "We decode competitors, audience behavior, search intent and conversion blockers before planning the campaign.",
-    "#65BC4F",
-  ],
-  [
-    "02",
-    "Build the Growth System",
-    "SEO, ads, content, website UX and reporting are aligned into one operating rhythm.",
-    "#155b9e",
-  ],
-  [
-    "03",
-    "Launch, Learn, Optimize",
-    "Every sprint sharpens targeting, creative, landing pages and budget movement through live data.",
-    "#ef3346",
-  ],
-  [
-    "04",
-    "Scale What Works",
-    "Winners are expanded into repeatable acquisition systems with clear reporting and accountability.",
-    "#65BC4F",
-  ],
-];
-
-const metrics = [
-  ["250+", "Projects Delivered", "92%"],
-  ["8+", "Years Experience", "78%"],
-  ["15+", "Marketing Experts", "84%"],
-  ["12+", "Industries Served", "68%"],
-];
-
 function AboutGalaxy() {
   const group = useRef<Group>(null);
   const points = useMemo(
@@ -167,18 +123,6 @@ function AboutGalaxy() {
   return (
     <group ref={group}>
       <Float speed={1.8} rotationIntensity={0.45} floatIntensity={0.8}>
-        <mesh>
-          <dodecahedronGeometry args={[0.68, 3]} />
-          <MeshDistortMaterial
-            color="#155b9e"
-            distort={0.36}
-            emissive="#0f6bb3"
-            emissiveIntensity={0.82}
-            metalness={0.76}
-            roughness={0.16}
-            speed={2.4}
-          />
-        </mesh>
         <Line
           points={points}
           color="#65bc4f"
@@ -346,51 +290,6 @@ function useAboutMotion() {
         },
       });
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: ".about-hero",
-            start: "top top",
-            end: "+=125%",
-            scrub: 1,
-            pin: true,
-          },
-        })
-        .to(".about-hero-title", { y: -130, scale: 0.78, opacity: 0.25 }, 0)
-        .to(".strategy-chip", { y: -70, opacity: 1, stagger: 0.08 }, 0.08)
-        .to(".hero-scroll-cue", { opacity: 0, y: 40 }, 0);
-
-      gsap.fromTo(
-        ".manifesto-word",
-        { opacity: 0.08, y: 80, rotateX: -65, filter: "blur(12px)" },
-        {
-          opacity: 1,
-          y: 0,
-          rotateX: 0,
-          filter: "blur(0px)",
-          stagger: 0.035,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".manifesto-section",
-            start: "top 60%",
-            end: "bottom 58%",
-            scrub: 1,
-          },
-        },
-      );
-
-      gsap.to(".playbook-track", {
-        xPercent: -72,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".playbook-section",
-          start: "top top",
-          end: "+=340%",
-          scrub: 1,
-          pin: true,
-        },
-      });
-
       gsap.fromTo(
         ".value-row",
         { y: 54, opacity: 0.25 },
@@ -425,7 +324,7 @@ function useAboutMotion() {
       );
 
       gsap.to(".number-track", {
-        xPercent: -34,
+        xPercent: -24,
         ease: "none",
         scrollTrigger: {
           trigger: ".numbers-section",
@@ -434,22 +333,6 @@ function useAboutMotion() {
           scrub: 1,
         },
       });
-
-      gsap.fromTo(
-        ".metric-fill",
-        { scaleX: 0, transformOrigin: "left center" },
-        {
-          scaleX: 1,
-          stagger: 0.08,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".numbers-section",
-            start: "top 66%",
-            end: "bottom 58%",
-            scrub: 1,
-          },
-        },
-      );
 
       gsap.to(".industry-marquee", {
         xPercent: -50,
@@ -481,7 +364,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.92),rgba(5,5,5,0.52)_48%,rgba(5,5,5,0.88)),radial-gradient(circle_at_72%_42%,transparent,rgba(5,5,5,0.84)_58%),linear-gradient(180deg,rgba(5,5,5,0.14),#050505)]" />
         <div className="about-orbit pointer-events-none absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
 
-        <div className="about-hero-copy about-hero-title relative z-10 max-w-7xl">
+        <div className="about-hero-copy relative z-10 max-w-7xl">
           <motion.p
             className="text-xs font-black uppercase tracking-[0.34em] text-[#65BC4F]"
             initial={{ y: 18, opacity: 0 }}
@@ -527,55 +410,6 @@ export default function AboutPage() {
               View Our Work
             </Link>
           </motion.div>
-        </div>
-
-        <div className="pointer-events-none absolute bottom-24 right-8 z-10 hidden w-[380px] grid-cols-1 gap-3 lg:grid">
-          {growthSignals.map(([title, text], index) => (
-            <div
-              key={title}
-              className="strategy-chip translate-y-10 border border-white/10 bg-black/50 p-4 opacity-0 backdrop-blur-xl"
-              style={{ marginLeft: `${index * 24}px` }}
-            >
-              <div className="flex items-center justify-between gap-5">
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-[#65BC4F]">
-                  {title}
-                </p>
-                <span className="h-2 w-2 rounded-full bg-[#65BC4F] shadow-[0_0_24px_#00ff88]" />
-              </div>
-              <p className="mt-3 text-sm leading-6 text-white/62">{text}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="hero-scroll-cue absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 text-center md:block">
-          <span className="mx-auto block h-16 w-px overflow-hidden bg-white/15">
-            <span className="block h-7 w-px animate-pulse bg-[#65BC4F]" />
-          </span>
-          <p className="mt-3 text-[10px] font-black uppercase tracking-[0.28em] text-white/45">
-            Scroll the system
-          </p>
-        </div>
-      </section>
-
-      <section className="manifesto-section relative grid min-h-screen place-items-center overflow-hidden px-5 py-28 md:px-10 lg:px-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_24%,rgba(239,51,70,0.18),transparent_30%),radial-gradient(circle_at_78%_70%,rgba(101,188,79,0.15),transparent_34%)]" />
-        <div className="relative mx-auto max-w-7xl text-center">
-          <p
-            data-about-reveal
-            className="text-xs font-black uppercase tracking-[0.34em] text-[#65BC4F]"
-          >
-            The Bigwig Method
-          </p>
-          <h2 className="mt-9 text-[clamp(3rem,8vw,8.8rem)] font-black uppercase leading-[0.86] tracking-normal">
-            {manifesto.split(" ").map((word, index) => (
-              <span
-                key={`${word}-${index}`}
-                className="manifesto-word inline-block px-2 [transform-style:preserve-3d]"
-              >
-                {word}
-              </span>
-            ))}
-          </h2>
         </div>
       </section>
 
@@ -625,54 +459,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="playbook-section relative h-screen overflow-hidden bg-[#080808]">
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.96),transparent_22%,transparent_78%,rgba(5,5,5,0.96)),radial-gradient(circle_at_20%_20%,rgba(21,91,158,0.2),transparent_32%),radial-gradient(circle_at_80%_72%,rgba(101,188,79,0.16),transparent_34%)]" />
-        <div className="relative flex h-screen items-center overflow-hidden">
-          <div className="w-[86vw] shrink-0 px-5 md:px-10 lg:px-16">
-            <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
-              Growth Playbook
-            </p>
-            <h2 className="mt-7 max-w-5xl text-5xl font-black uppercase leading-[0.9] md:text-7xl lg:text-[7.6rem]">
-              Four moves that turn marketing into momentum.
-            </h2>
-          </div>
-
-          <div className="playbook-track flex w-max gap-5 pr-[12vw]">
-            {playbookSteps.map(([step, title, text, color]) => (
-              <article
-                key={title}
-                className="group relative grid h-[74vh] w-[84vw] shrink-0 content-between overflow-hidden border border-white/12 bg-white/[0.035] p-6 transition hover:border-[#65BC4F]/55 md:w-[58vw] md:p-8 lg:w-[44vw]"
-                style={{ boxShadow: `inset 0 0 150px ${color}20` }}
-              >
-                <span
-                  className="absolute -right-4 -top-7 text-[10rem] font-black leading-none text-white/[0.045] transition group-hover:text-white/[0.075] md:text-[14rem]"
-                  aria-hidden="true"
-                >
-                  {step}
-                </span>
-                <div className="relative flex items-center justify-between">
-                  <span className="text-xs font-black uppercase tracking-[0.26em] text-white/45">
-                    Step {step}
-                  </span>
-                  <span
-                    className="h-14 w-14 rounded-full"
-                    style={{ backgroundColor: color }}
-                  />
-                </div>
-                <div className="relative">
-                  <h3 className="max-w-[10ch] text-5xl font-black uppercase leading-[0.88] md:text-7xl">
-                    {title}
-                  </h3>
-                  <p className="mt-6 max-w-xl text-base leading-8 text-white/64 md:text-lg">
-                    {text}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="values-section relative overflow-hidden bg-white px-5 py-24 text-black md:px-10 md:py-28 lg:px-16">
         <div className="absolute inset-x-0 top-0 h-px bg-black/10" />
         <div>
@@ -713,47 +499,6 @@ export default function AboutPage() {
                   <p className="mt-4 max-w-2xl text-sm leading-7 text-black/62 md:text-base">
                     {text}
                   </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="numbers-section relative overflow-hidden bg-[#050505] px-5 py-24 md:px-10 md:py-28 lg:px-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(101,188,79,0.16),transparent_30%),radial-gradient(circle_at_82%_70%,rgba(239,51,70,0.14),transparent_32%)]" />
-        <div className="relative grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
-          <div data-about-reveal>
-            <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
-              Proof in motion
-            </p>
-            <h2 className="mt-7 text-5xl font-black uppercase leading-[0.9] md:text-7xl">
-              Built for brands that want visible movement.
-            </h2>
-            <p className="mt-7 max-w-xl text-base leading-8 text-white/64 md:text-lg">
-              Our work is measured through outcomes clients can actually read:
-              stronger visibility, better leads, cleaner funnels and compounding
-              campaign learning.
-            </p>
-          </div>
-
-          <div className="number-track grid w-[120%] gap-4 md:grid-cols-2">
-            {metrics.map(([value, label, width]) => (
-              <article
-                key={label}
-                className="border border-white/10 bg-white/[0.04] p-6 backdrop-blur transition hover:-translate-y-1 hover:border-[#65BC4F]/50 hover:bg-white/[0.07] md:p-7"
-              >
-                <strong className="block text-6xl font-black leading-none text-[#65BC4F] md:text-7xl">
-                  {value}
-                </strong>
-                <p className="mt-5 text-sm font-black uppercase tracking-[0.2em] text-white/62">
-                  {label}
-                </p>
-                <div className="mt-7 h-2 overflow-hidden bg-white/10">
-                  <span
-                    className="metric-fill block h-full bg-[#65BC4F]"
-                    style={{ width }}
-                  />
                 </div>
               </article>
             ))}
