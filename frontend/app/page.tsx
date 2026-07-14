@@ -602,15 +602,16 @@ export default function Home() {
 
       <section
         id="work"
-        className="portfolio-scene relative h-screen overflow-hidden bg-white px-6 py-20 text-black sm:px-8 md:px-10 lg:px-16 xl:px-20"
+        className="portfolio-scene relative min-h-screen overflow-hidden bg-white px-6 py-20 text-black sm:px-8 lg:px-12 xl:px-20"
       >
-        <div className="mx-auto grid h-full max-w-[1600px] items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] xl:gap-14">
-          <div data-reveal className="min-w-0">
+        <div className="mx-auto grid max-w-[1600px] items-center gap-16 xl:gap-20 lg:grid-cols-[0.9fr_1.1fr]">
+          {/* Left Content */}
+          <div data-reveal className="min-w-0 max-w-[650px] lg:pr-6 xl:pr-10">
             <p className="text-xs font-black uppercase tracking-[0.32em] text-[#155b9e]">
               OUR EXPERTISE
             </p>
 
-            <h2 className="mt-8 max-w-3xl text-4xl font-black uppercase leading-[0.9] md:text-6xl xl:text-7xl">
+            <h2 className="mt-6 text-4xl font-black uppercase leading-[0.95] sm:text-5xl lg:text-[58px] xl:text-[68px] 2xl:text-[76px]">
               EVERYTHING YOUR
               <br />
               BUSINESS NEEDS
@@ -618,7 +619,9 @@ export default function Home() {
               TO GROW ONLINE.
             </h2>
           </div>
-          <div className="mx-auto min-w-0 w-full max-w-5xl">
+
+          {/* Right Screen */}
+          <div className="mx-auto w-full max-w-[860px]">
             <div className="rounded-[34px] border-[14px] border-[#111] bg-[#050505] p-4 shadow-2xl">
               <div className="portfolio-screen-window h-[520px] overflow-hidden rounded-[18px] bg-[#0a0a0a] md:h-[560px]">
                 <div className="portfolio-screen-inner grid gap-4 p-4 pb-8 sm:p-5 sm:pb-10">
@@ -631,7 +634,7 @@ export default function Home() {
                         Our Expertise
                       </span>
 
-                      <h3 className="mt-8 max-w-3xl break-words text-3xl font-black uppercase leading-none sm:text-4xl lg:text-5xl">
+                      <h3 className="mt-6 max-w-3xl break-words text-3xl font-black uppercase leading-none sm:text-4xl lg:text-5xl">
                         {project.title}
                       </h3>
 
@@ -643,6 +646,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
             <div className="mx-auto h-6 w-[82%] rounded-b-[40px] bg-[#111]" />
           </div>
         </div>
