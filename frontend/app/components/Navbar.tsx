@@ -112,11 +112,11 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <a
             className="magnetic hidden rounded-full border border-[#65BC4F]/70 bg-[#65BC4F] px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-[#050505] shadow-[0_0_24px_rgba(101,188,79,0.45)] transition hover:border-white/30 hover:bg-[#7DDC62] md:inline-flex"
-            href="#contact"
+            href="/contact"
             onClick={closeMenu}
             style={{ color: "#050505" }}
           >
-            Start Project
+            Contact Us
           </a>
           <button
             className="magnetic flex h-11 items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 transition hover:border-[#65BC4F]/70 hover:bg-[#65BC4F] hover:text-[#050505]"
