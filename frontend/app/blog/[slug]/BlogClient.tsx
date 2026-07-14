@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import Footer from "@/app/components/Footer";
+import HeroGalaxy from "@/app/components/HeroGalaxy";
 import Navbar from "@/app/components/Navbar";
 
 export interface BlogFaq {
@@ -112,7 +113,10 @@ export default function BlogClient({
       <Navbar />
 
       <section className="relative overflow-hidden px-5 pb-12 pt-32 md:px-10 md:pt-40 lg:px-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(101,188,79,0.2),transparent_32%),radial-gradient(circle_at_78%_32%,rgba(21,91,158,0.2),transparent_34%)]" />
+        <div className="absolute inset-0 opacity-72">
+          <HeroGalaxy />
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.92),rgba(5,5,5,0.52)_48%,rgba(5,5,5,0.88)),radial-gradient(circle_at_72%_42%,transparent,rgba(5,5,5,0.84)_58%),linear-gradient(180deg,rgba(5,5,5,0.14),#050505)]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#050505] to-transparent" />
 
         <div className="relative z-10">

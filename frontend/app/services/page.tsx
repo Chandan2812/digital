@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  ArrowUpRight,
   BarChart3,
   Code2,
   Mail,
@@ -13,6 +12,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Footer from "../components/Footer";
+import HeroGalaxy from "../components/HeroGalaxy";
 import Navbar from "../components/Navbar";
 
 const services = [
@@ -103,11 +103,13 @@ export default function ServicesPage() {
       <Navbar />
 
       <section className="relative grid min-h-[760px] items-end overflow-hidden px-5 pb-16 pt-36 md:px-10 lg:min-h-screen lg:px-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(101,188,79,0.24),transparent_32%),radial-gradient(circle_at_78%_30%,rgba(21,91,158,0.24),transparent_34%),radial-gradient(circle_at_62%_82%,rgba(239,51,70,0.17),transparent_30%)]" />
-        <div className="pointer-events-none absolute right-[-18vmin] top-[16%] h-[72vmin] w-[72vmin] rounded-full border border-white/10" />
+        <div className="absolute inset-0 opacity-72">
+          <HeroGalaxy />
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.92),rgba(5,5,5,0.52)_48%,rgba(5,5,5,0.88)),radial-gradient(circle_at_72%_42%,transparent,rgba(5,5,5,0.84)_58%),linear-gradient(180deg,rgba(5,5,5,0.14),#050505)]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#050505] to-transparent" />
 
-        <div className="relative z-10 grid gap-10 lg:grid-cols-[1fr_0.44fr] lg:items-end">
+        <div className="relative z-10 max-w-7xl">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.34em] text-[#65BC4F]">
               Bigwig Media Services
@@ -120,31 +122,21 @@ export default function ServicesPage() {
               and email systems planned together around measurable business
               growth.
             </p>
-          </div>
-
-          <div className="border border-white/12 bg-white/[0.045] p-5 backdrop-blur-xl md:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#65BC4F]">
-              Service Stack
-            </p>
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              {services.slice(0, 4).map((service) => (
-                <a
-                  key={service.id}
-                  href={`#${service.id}`}
-                  className="border border-white/10 bg-black/30 px-4 py-3 text-xs font-black uppercase leading-5 tracking-[0.14em] text-white/62 transition hover:border-[#65BC4F] hover:text-[#65BC4F]"
-                >
-                  {service.title}
-                </a>
-              ))}
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href="/contact"
+                className="inline-flex justify-center rounded-full bg-[#65BC4F] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] shadow-[0_0_30px_rgba(101,188,79,0.45)] transition hover:-translate-y-1 hover:bg-[#7DDC62]"
+                style={{ color: "#050505" }}
+              >
+                Start a Project
+              </Link>
+              <a
+                href="#website-development"
+                className="inline-flex justify-center rounded-full border border-white/20 bg-white/[0.04] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] transition hover:-translate-y-1 hover:border-[#65BC4F]/70 hover:bg-white/[0.08]"
+              >
+                Explore Services
+              </a>
             </div>
-            <Link
-              href="/contact"
-              className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#65BC4F] px-6 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] transition hover:bg-[#7DDC62]"
-              style={{ color: "#050505" }}
-            >
-              Start a Project
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
           </div>
         </div>
       </section>

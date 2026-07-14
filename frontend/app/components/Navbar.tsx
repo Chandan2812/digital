@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const menuLinks = [
@@ -31,6 +32,7 @@ const socialLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -50,6 +52,10 @@ export default function Navbar() {
   }, [open]);
 
   const closeMenu = () => setOpen(false);
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <>
@@ -75,9 +81,14 @@ export default function Navbar() {
           {menuLinks.slice(0, 5).map((item) => (
             <Link
               key={item.label}
-              className="transition hover:text-[#65BC4F]"
+              className={`transition hover:text-[#65BC4F] ${
+                isActive(item.href)
+                  ? "text-[#65BC4F] drop-shadow-[0_0_14px_rgba(101,188,79,0.45)]"
+                  : ""
+              }`}
               href={item.href}
               onClick={closeMenu}
+              aria-current={isActive(item.href) ? "page" : undefined}
             >
               {item.label}
             </Link>
@@ -86,10 +97,15 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <Link
-            className="magnetic hidden rounded-full border border-[#65BC4F]/70 bg-[#65BC4F] px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-[#050505] shadow-[0_0_24px_rgba(101,188,79,0.45)] transition hover:border-white/30 hover:bg-[#7DDC62] md:inline-flex"
+            className={`magnetic hidden rounded-full border px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] shadow-[0_0_24px_rgba(101,188,79,0.45)] transition hover:border-white/30 hover:bg-[#7DDC62] md:inline-flex ${
+              isActive("/contact")
+                ? "border-white bg-white text-[#050505]"
+                : "border-[#65BC4F]/70 bg-[#65BC4F] text-[#050505]"
+            }`}
             href="/contact"
             onClick={closeMenu}
             style={{ color: "#050505" }}
+            aria-current={isActive("/contact") ? "page" : undefined}
           >
             Contact Us
           </Link>
@@ -178,8 +194,13 @@ export default function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="group flex min-h-14 items-center justify-between border border-white/10 bg-white/[0.04] px-4 py-3 text-xl font-black uppercase leading-none text-white transition hover:border-[#65BC4F]/60 hover:bg-[#65BC4F] hover:text-[#050505] sm:min-h-16 sm:text-2xl md:min-h-20 md:px-5 md:py-4 md:text-4xl lg:hidden"
+                className={`group flex min-h-14 items-center justify-between border px-4 py-3 text-xl font-black uppercase leading-none transition hover:border-[#65BC4F]/60 hover:bg-[#65BC4F] hover:text-[#050505] sm:min-h-16 sm:text-2xl md:min-h-20 md:px-5 md:py-4 md:text-4xl lg:hidden ${
+                  isActive(item.href)
+                    ? "border-[#65BC4F]/70 bg-[#65BC4F] text-[#050505]"
+                    : "border-white/10 bg-white/[0.04] text-white"
+                }`}
                 onClick={closeMenu}
+                aria-current={isActive(item.href) ? "page" : undefined}
               >
                 <span>{item.label}</span>
                 <span className="text-base transition group-hover:translate-x-1">

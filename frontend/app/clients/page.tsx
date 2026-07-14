@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import Footer from "../components/Footer";
+import HeroGalaxy from "../components/HeroGalaxy";
 import Navbar from "../components/Navbar";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -27,13 +28,6 @@ const industries = [
   "Hospitality",
   "IT Services",
   "Local Brands",
-];
-
-const metrics = [
-  ["250+", "Projects Delivered"],
-  ["95%", "Client Retention"],
-  ["12+", "Industries Served"],
-  ["8+", "Years Experience"],
 ];
 
 const stories = [
@@ -82,18 +76,6 @@ function useClientsMotion() {
             scrollTrigger: { trigger: item, start: "top 84%" },
           },
         );
-      });
-
-      gsap.to(".client-orbit", {
-        rotate: 135,
-        scale: 1.12,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".clients-hero",
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
       });
 
       gsap.to(".industry-track", {
@@ -150,11 +132,13 @@ export default function ClientsPage() {
       <Navbar />
 
       <section className="clients-hero relative grid min-h-screen items-center overflow-hidden px-5 pb-16 pt-36 md:px-10 md:pt-40 lg:px-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(101,188,79,0.22),transparent_32%),radial-gradient(circle_at_82%_34%,rgba(21,91,158,0.26),transparent_34%),radial-gradient(circle_at_60%_82%,rgba(239,51,70,0.18),transparent_30%)]" />
-        <div className="client-orbit pointer-events-none absolute right-[-18vmin] top-[18%] h-[72vmin] w-[72vmin] rounded-full border border-white/10" />
+        <div className="absolute inset-0 opacity-72">
+          <HeroGalaxy />
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.92),rgba(5,5,5,0.52)_48%,rgba(5,5,5,0.88)),radial-gradient(circle_at_72%_42%,transparent,rgba(5,5,5,0.84)_58%),linear-gradient(180deg,rgba(5,5,5,0.14),#050505)]" />
         <div className="pointer-events-none absolute bottom-0 left-0 h-48 w-full bg-gradient-to-t from-[#050505] to-transparent" />
 
-        <div className="relative z-10 grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end">
+        <div className="relative z-10 max-w-7xl">
           <div>
             <motion.p
               className="text-xs font-black uppercase tracking-[0.34em] text-[#65BC4F]"
@@ -199,31 +183,10 @@ export default function ClientsPage() {
                 href="#client-logos"
                 className="inline-flex justify-center rounded-full border border-white/20 bg-white/[0.04] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] transition hover:-translate-y-1 hover:border-[#65BC4F]/70 hover:bg-white/[0.08]"
               >
-                View Clients
+              View Clients
               </a>
             </motion.div>
           </div>
-
-          <motion.div
-            className="grid min-w-0 gap-4 sm:grid-cols-2"
-            initial={{ y: 34, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.36, duration: 0.8 }}
-          >
-            {metrics.map(([value, label]) => (
-              <div
-                key={label}
-                className="min-w-0 border border-white/10 bg-white/[0.045] p-4 backdrop-blur-xl transition hover:-translate-y-1 hover:border-[#65BC4F]/50 hover:bg-white/[0.07] sm:p-5"
-              >
-                <strong className="block text-4xl font-black leading-none text-[#65BC4F] sm:text-5xl">
-                  {value}
-                </strong>
-                <span className="mt-3 block max-w-full whitespace-normal break-words text-[11px] font-black uppercase leading-5 tracking-[0.12em] text-white/58 sm:text-xs sm:tracking-[0.16em]">
-                  {label}
-                </span>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </section>
 

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import Footer from "../components/Footer";
+import HeroGalaxy from "../components/HeroGalaxy";
 import Navbar from "../components/Navbar";
 
 interface Blog {
@@ -170,8 +171,10 @@ export default function BlogPage() {
       <Navbar />
 
       <section className="relative grid min-h-[760px] items-end overflow-hidden px-5 pb-16 pt-36 md:px-10 lg:min-h-screen lg:px-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(101,188,79,0.24),transparent_32%),radial-gradient(circle_at_78%_28%,rgba(239,51,70,0.18),transparent_30%),radial-gradient(circle_at_66%_78%,rgba(21,91,158,0.24),transparent_34%)]" />
-        <div className="pointer-events-none absolute right-[-18vmin] top-[14%] h-[72vmin] w-[72vmin] rounded-full border border-white/10" />
+        <div className="absolute inset-0 opacity-72">
+          <HeroGalaxy />
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.92),rgba(5,5,5,0.52)_48%,rgba(5,5,5,0.88)),radial-gradient(circle_at_72%_42%,transparent,rgba(5,5,5,0.84)_58%),linear-gradient(180deg,rgba(5,5,5,0.14),#050505)]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#050505] to-transparent" />
 
         <div className="relative z-10 grid gap-10 lg:grid-cols-[1fr_0.52fr] lg:items-end">

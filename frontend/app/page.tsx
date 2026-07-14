@@ -8,7 +8,6 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import Navbar from "./components/Navbar";
 import BigwigWebGL from "./components/BigwigWebGL";
-import CollisionHero from "./components/CollisionHero";
 import Footer from "./components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -340,12 +339,18 @@ function useCinematicMotion() {
 }
 
 function Loader() {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.sessionStorage.getItem("bigwig-loader-seen") !== "true";
+  });
 
   useEffect(() => {
+    if (!show) return;
+
+    window.sessionStorage.setItem("bigwig-loader-seen", "true");
     const timer = window.setTimeout(() => setShow(false), 3000);
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [show]);
 
   return (
     <AnimatePresence>
