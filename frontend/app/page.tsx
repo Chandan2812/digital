@@ -277,7 +277,17 @@ function useCinematicMotion() {
       });
 
       gsap.to(".portfolio-screen-inner", {
-        yPercent: -58,
+        y: () => {
+          const screen = document.querySelector<HTMLElement>(
+            ".portfolio-screen-window",
+          );
+          const track = document.querySelector<HTMLElement>(
+            ".portfolio-screen-inner",
+          );
+
+          if (!screen || !track) return 0;
+          return -Math.max(0, track.scrollHeight - screen.clientHeight);
+        },
         ease: "none",
         scrollTrigger: {
           trigger: ".portfolio-scene",
@@ -285,6 +295,7 @@ function useCinematicMotion() {
           end: "+=280%",
           scrub: 1,
           pin: true,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -591,15 +602,15 @@ export default function Home() {
 
       <section
         id="work"
-        className="portfolio-scene relative h-screen overflow-hidden bg-white px-5 py-24 text-black md:px-10 lg:px-16"
+        className="portfolio-scene relative h-screen overflow-hidden bg-white px-6 py-20 text-black sm:px-8 md:px-10 lg:px-16 xl:px-20"
       >
-        <div className="grid h-full items-center gap-10 lg:grid-cols-[0.7fr_1.3fr]">
-          <div data-reveal>
+        <div className="mx-auto grid h-full max-w-[1600px] items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] xl:gap-14">
+          <div data-reveal className="min-w-0">
             <p className="text-xs font-black uppercase tracking-[0.32em] text-[#155b9e]">
               OUR EXPERTISE
             </p>
 
-            <h2 className="mt-8 text-5xl font-black uppercase leading-[0.9] md:text-7xl">
+            <h2 className="mt-8 max-w-3xl text-4xl font-black uppercase leading-[0.9] md:text-6xl xl:text-7xl">
               EVERYTHING YOUR
               <br />
               BUSINESS NEEDS
@@ -607,24 +618,24 @@ export default function Home() {
               TO GROW ONLINE.
             </h2>
           </div>
-          <div className="mx-auto w-full max-w-4xl">
+          <div className="mx-auto min-w-0 w-full max-w-5xl">
             <div className="rounded-[34px] border-[14px] border-[#111] bg-[#050505] p-4 shadow-2xl">
-              <div className="h-[520px] overflow-hidden rounded-[18px] bg-[#0a0a0a] md:h-[560px]">
-                <div className="portfolio-screen-inner grid gap-4 p-5 pb-28">
-                  {projects.concat(projects).map((project, index) => (
+              <div className="portfolio-screen-window h-[520px] overflow-hidden rounded-[18px] bg-[#0a0a0a] md:h-[560px]">
+                <div className="portfolio-screen-inner grid gap-4 p-4 pb-8 sm:p-5 sm:pb-10">
+                  {projects.map((project, index) => (
                     <div
                       key={`${project.title}-${index}`}
-                      className="min-h-56 border border-white/10 bg-[radial-gradient(circle_at_20%_20%,rgba(101,188,79,0.22),transparent_30%),linear-gradient(135deg,#101010,#050505)] p-6 text-white md:min-h-60"
+                      className="min-h-56 border border-white/10 bg-[radial-gradient(circle_at_20%_20%,rgba(101,188,79,0.22),transparent_30%),linear-gradient(135deg,#101010,#050505)] p-5 text-white sm:p-6 md:min-h-60"
                     >
                       <span className="text-xs font-black uppercase tracking-[0.24em] text-[#65BC4F]">
                         Our Expertise
                       </span>
 
-                      <h3 className="mt-10 text-5xl font-black uppercase leading-none">
+                      <h3 className="mt-8 max-w-3xl break-words text-3xl font-black uppercase leading-none sm:text-4xl lg:text-5xl">
                         {project.title}
                       </h3>
 
-                      <p className="mt-4 text-white/55">
+                      <p className="mt-4 max-w-3xl text-sm leading-7 text-white/60 sm:text-base">
                         {project.description}
                       </p>
                     </div>

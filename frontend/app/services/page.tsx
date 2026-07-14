@@ -28,7 +28,12 @@ const services = [
     color: "#155b9e",
     summary:
       "Fast, responsive and conversion-focused websites built to turn traffic into qualified enquiries.",
-    points: ["UI/UX design", "Next.js development", "Landing pages", "Conversion tracking"],
+    points: [
+      "UI/UX design",
+      "Next.js development",
+      "Landing pages",
+      "Conversion tracking",
+    ],
   },
   {
     id: "search-engine-optimization",
@@ -37,7 +42,12 @@ const services = [
     color: "#65BC4F",
     summary:
       "Technical SEO, content strategy and ranking systems that improve qualified organic traffic.",
-    points: ["Technical audits", "Keyword strategy", "On-page SEO", "Content planning"],
+    points: [
+      "Technical audits",
+      "Keyword strategy",
+      "On-page SEO",
+      "Content planning",
+    ],
   },
   {
     id: "social-media-optimization",
@@ -46,7 +56,12 @@ const services = [
     color: "#ef3346",
     summary:
       "Profile systems, platform hygiene and content calendars that make your brand look active and credible.",
-    points: ["Profile setup", "Creative calendars", "Content hygiene", "Brand consistency"],
+    points: [
+      "Profile setup",
+      "Creative calendars",
+      "Content hygiene",
+      "Brand consistency",
+    ],
   },
   {
     id: "social-media-marketing",
@@ -55,7 +70,12 @@ const services = [
     color: "#65BC4F",
     summary:
       "Campaigns, creatives and paid social funnels designed to convert attention into enquiries.",
-    points: ["Meta campaigns", "Creative testing", "Audience planning", "Lead generation"],
+    points: [
+      "Meta campaigns",
+      "Creative testing",
+      "Audience planning",
+      "Lead generation",
+    ],
   },
   {
     id: "performance-marketing",
@@ -73,7 +93,12 @@ const services = [
     color: "#ffffff",
     summary:
       "Search, review and sentiment control for brands that need trust before the first conversation.",
-    points: ["Review strategy", "Brand monitoring", "Search cleanup", "Trust building"],
+    points: [
+      "Review strategy",
+      "Brand monitoring",
+      "Search cleanup",
+      "Trust building",
+    ],
   },
   {
     id: "graphic-designing-video-editing",
@@ -82,7 +107,12 @@ const services = [
     color: "#ef3346",
     summary:
       "Premium visual assets, ad creatives, reels and brand content that improve recall and click-through.",
-    points: ["Ad creatives", "Reels editing", "Brand graphics", "Motion assets"],
+    points: [
+      "Ad creatives",
+      "Reels editing",
+      "Brand graphics",
+      "Motion assets",
+    ],
   },
   {
     id: "email-marketing",
@@ -96,10 +126,22 @@ const services = [
 ];
 
 const process = [
-  ["Audit", "We review your website, channels, competitors and current conversion path."],
-  ["Strategy", "We choose the right service mix, timeline, content plan and measurement setup."],
-  ["Execution", "Specialists build, launch, track and improve the work across channels."],
-  ["Scale", "Reports turn into decisions, tests and stronger campaigns every month."],
+  [
+    "Audit",
+    "We review your website, channels, competitors and current conversion path.",
+  ],
+  [
+    "Strategy",
+    "We choose the right service mix, timeline, content plan and measurement setup.",
+  ],
+  [
+    "Execution",
+    "Specialists build, launch, track and improve the work across channels.",
+  ],
+  [
+    "Scale",
+    "Reports turn into decisions, tests and stronger campaigns every month.",
+  ],
 ];
 
 export default function ServicesPage() {
@@ -118,20 +160,22 @@ export default function ServicesPage() {
         },
       );
 
-      gsap.utils.toArray<HTMLElement>("[data-service-reveal]").forEach((item) => {
-        gsap.fromTo(
-          item,
-          { y: 70, opacity: 0, filter: "blur(12px)" },
-          {
-            y: 0,
-            opacity: 1,
-            filter: "blur(0px)",
-            duration: 0.95,
-            ease: "power3.out",
-            scrollTrigger: { trigger: item, start: "top 84%" },
-          },
-        );
-      });
+      gsap.utils
+        .toArray<HTMLElement>("[data-service-reveal]")
+        .forEach((item) => {
+          gsap.fromTo(
+            item,
+            { y: 70, opacity: 0, filter: "blur(12px)" },
+            {
+              y: 0,
+              opacity: 1,
+              filter: "blur(0px)",
+              duration: 0.95,
+              ease: "power3.out",
+              scrollTrigger: { trigger: item, start: "top 84%" },
+            },
+          );
+        });
 
       gsap.fromTo(
         ".service-card",
@@ -267,9 +311,6 @@ export default function ServicesPage() {
                       </span>
                     ))}
                   </div>
-                  <span className="mt-7 inline-flex text-xs font-black uppercase tracking-[0.18em] text-[#65BC4F]">
-                    View Details
-                  </span>
                 </a>
               );
             })}
