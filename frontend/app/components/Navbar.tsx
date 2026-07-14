@@ -7,10 +7,10 @@ import { useEffect, useState } from "react";
 const menuLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "#services" },
-  { label: "Blogs", href: "#blogs" },
-  { label: "Clients", href: "#clients" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "/#services" },
+  { label: "Blogs", href: "/#blogs" },
+  { label: "Clients", href: "/clients" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const serviceHighlights = [
@@ -72,52 +72,27 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-7 text-[11px] font-bold uppercase tracking-[0.2em] text-white/64 lg:flex">
-          <Link
-            className="transition hover:text-[#65BC4F]"
-            href="/"
-            onClick={closeMenu}
-          >
-            Home
-          </Link>
-          <Link
-            className="transition hover:text-[#65BC4F]"
-            href="/about"
-            onClick={closeMenu}
-          >
-            About
-          </Link>
-          <a
-            className="transition hover:text-[#65BC4F]"
-            href="#services"
-            onClick={closeMenu}
-          >
-            Services
-          </a>
-          <a
-            className="transition hover:text-[#65BC4F]"
-            href="#blogs"
-            onClick={closeMenu}
-          >
-            Blogs
-          </a>
-          <a
-            className="transition hover:text-[#65BC4F]"
-            href="#clients"
-            onClick={closeMenu}
-          >
-            Clients
-          </a>
+          {menuLinks.slice(0, 5).map((item) => (
+            <Link
+              key={item.label}
+              className="transition hover:text-[#65BC4F]"
+              href={item.href}
+              onClick={closeMenu}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
+          <Link
             className="magnetic hidden rounded-full border border-[#65BC4F]/70 bg-[#65BC4F] px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-[#050505] shadow-[0_0_24px_rgba(101,188,79,0.45)] transition hover:border-white/30 hover:bg-[#7DDC62] md:inline-flex"
             href="/contact"
             onClick={closeMenu}
             style={{ color: "#050505" }}
           >
             Contact Us
-          </a>
+          </Link>
           <button
             className="magnetic flex h-11 items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 transition hover:border-[#65BC4F]/70 hover:bg-[#65BC4F] hover:text-[#050505]"
             type="button"
@@ -199,33 +174,19 @@ export default function Navbar() {
             <p className="block lg:hidden mb-2 text-xs font-black uppercase tracking-[0.26em] text-[#65BC4F]">
               Menu
             </p>
-            {menuLinks.map((item) =>
-              item.href.startsWith("/") ? (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="group flex min-h-14 items-center justify-between border border-white/10 bg-white/[0.04] px-4 py-3 text-xl font-black uppercase leading-none text-white transition hover:border-[#65BC4F]/60 hover:bg-[#65BC4F] hover:text-[#050505] sm:min-h-16 sm:text-2xl md:min-h-20 md:px-5 md:py-4 md:text-4xl lg:hidden"
-                  onClick={closeMenu}
-                >
-                  <span>{item.label}</span>
-                  <span className="text-base transition group-hover:translate-x-1">
-                    -&gt;
-                  </span>
-                </Link>
-              ) : (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="group flex min-h-14 items-center justify-between border border-white/10 bg-white/[0.04] px-4 py-3 text-xl font-black uppercase leading-none text-white transition hover:border-[#65BC4F]/60 hover:bg-[#65BC4F] hover:text-[#050505] sm:min-h-16 sm:text-2xl md:min-h-20 md:px-5 md:py-4 md:text-4xl lg:hidden"
-                  onClick={closeMenu}
-                >
-                  <span>{item.label}</span>
-                  <span className="text-base transition group-hover:translate-x-1">
-                    -&gt;
-                  </span>
-                </a>
-              ),
-            )}
+            {menuLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="group flex min-h-14 items-center justify-between border border-white/10 bg-white/[0.04] px-4 py-3 text-xl font-black uppercase leading-none text-white transition hover:border-[#65BC4F]/60 hover:bg-[#65BC4F] hover:text-[#050505] sm:min-h-16 sm:text-2xl md:min-h-20 md:px-5 md:py-4 md:text-4xl lg:hidden"
+                onClick={closeMenu}
+              >
+                <span>{item.label}</span>
+                <span className="text-base transition group-hover:translate-x-1">
+                  -&gt;
+                </span>
+              </Link>
+            ))}
           </nav>
 
           <div className="mt-4 grid gap-4">
@@ -285,14 +246,14 @@ export default function Navbar() {
               <p className="mt-3 text-sm text-white/64">
                 Delhi NCR / India / Global campaigns
               </p>
-              <a
+              <Link
                 className="mt-5 inline-flex w-full justify-center rounded-full bg-[#65BC4F] px-6 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] shadow-[0_0_28px_rgba(101,188,79,0.4)] transition hover:bg-[#7DDC62]"
-                href="#contact"
+                href="/contact"
                 onClick={closeMenu}
                 style={{ color: "#050505" }}
               >
                 Start Project
-              </a>
+              </Link>
             </section>
           </div>
         </div>

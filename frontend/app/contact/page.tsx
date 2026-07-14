@@ -111,12 +111,12 @@ export default function ContactPage() {
     <main id="top" className="relative overflow-hidden bg-[#050505] text-white">
       <Navbar />
 
-      <section className="contact-hero relative grid min-h-screen items-center overflow-hidden px-5 pb-16 pt-36 md:px-10 md:pt-40 lg:px-16">
+      <section className="contact-hero relative grid min-h-[760px] items-center overflow-hidden px-5 pb-10 pt-32 md:min-h-[780px] md:px-10 md:pt-34 lg:min-h-screen lg:px-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_24%,rgba(101,188,79,0.22),transparent_32%),radial-gradient(circle_at_82%_34%,rgba(239,51,70,0.18),transparent_30%),radial-gradient(circle_at_66%_78%,rgba(21,91,158,0.26),transparent_34%)]" />
         <div className="contact-orbit pointer-events-none absolute right-[-16vmin] top-[16%] h-[74vmin] w-[74vmin] rounded-full border border-white/10" />
         <div className="pointer-events-none absolute bottom-0 left-0 h-48 w-full bg-gradient-to-t from-[#050505] to-transparent" />
 
-        <div className="relative z-10 grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-end">
+        <div className="relative z-10 grid gap-8 lg:grid-cols-[0.98fr_0.82fr] lg:items-center">
           <div>
             <motion.p
               className="text-xs font-black uppercase tracking-[0.34em] text-[#65BC4F]"
@@ -127,7 +127,7 @@ export default function ContactPage() {
               Contact Bigwig Media
             </motion.p>
             <motion.h1
-              className="mt-7 max-w-6xl text-5xl font-black uppercase leading-[0.86] tracking-normal md:text-7xl lg:text-[7.4rem]"
+              className="mt-6 max-w-5xl text-4xl font-black uppercase leading-[0.9] tracking-normal md:text-6xl lg:text-[5.4rem]"
               initial={{ y: 46, opacity: 0, filter: "blur(14px)" }}
               animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
@@ -135,7 +135,7 @@ export default function ContactPage() {
               Tell us where you want the business to grow.
             </motion.h1>
             <motion.p
-              className="mt-8 max-w-3xl text-lg leading-8 text-white/70 md:text-xl"
+              className="mt-6 max-w-2xl text-base leading-7 text-white/70 md:text-lg md:leading-8"
               initial={{ y: 28, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.15, duration: 0.8 }}
@@ -147,7 +147,7 @@ export default function ContactPage() {
           </div>
 
           <motion.div
-            className="border border-white/12 bg-white/[0.045] p-5 backdrop-blur-xl md:p-7"
+            className="border border-white/12 bg-white/[0.045] p-5 backdrop-blur-xl md:p-6"
             initial={{ y: 34, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.28, duration: 0.8 }}
@@ -157,15 +157,15 @@ export default function ContactPage() {
             </p>
             <a
               href="mailto:hello@bigwigmedia.in"
-              className="mt-6 block text-3xl font-black uppercase leading-none transition hover:text-[#65BC4F] md:text-5xl"
+              className="mt-5 block break-all text-2xl font-black uppercase leading-none transition hover:text-[#65BC4F] md:text-3xl xl:text-4xl"
             >
               hello@bigwigmedia.in
             </a>
-            <p className="mt-6 text-base leading-7 text-white/62">
+            <p className="mt-5 text-sm leading-6 text-white/62 md:text-base md:leading-7">
               Send your website, target market and the result you want. We will
               reply with a practical starting point.
             </p>
-            <div className="mt-8 grid grid-cols-2 gap-3">
+            <div className="mt-6 grid grid-cols-2 gap-3">
               {["Audit", "Strategy", "Campaign", "Scale"].map((item) => (
                 <span
                   key={item}

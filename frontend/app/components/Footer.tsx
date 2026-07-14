@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const serviceLinks = [
   [
@@ -37,7 +38,19 @@ const serviceLinks = [
   ],
 ];
 
-const quickLinks = ["Story", "Services", "Blogs", "Clients"];
+const quickLinks = [
+  ["Home", "/"],
+  ["About", "/about"],
+  ["Services", "/#services"],
+  ["Clients", "/clients"],
+  ["Contact", "/contact"],
+];
+
+const socialLinks = [
+  ["Instagram", "https://www.instagram.com/bigwigmedia/"],
+  ["LinkedIn", "https://www.linkedin.com/company/bigwig-media-digital/"],
+  ["YouTube", "https://www.youtube.com/@bigwigmedia"],
+];
 
 export default function Footer() {
   return (
@@ -67,20 +80,20 @@ export default function Footer() {
             that want measurable enquiries.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="mailto:hello@bigwigmedia.in"
+            <Link
+              href="/contact"
               className="magnetic inline-flex justify-center rounded-full border border-[#65BC4F]/60 bg-[#65BC4F] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] shadow-[0_0_30px_rgba(101,188,79,0.48)] transition hover:bg-[#7DDC62] hover:text-[#050505]"
               style={{ color: "#050505" }}
             >
               Book a Growth Call
-            </a>
-            <a
-              href="#services"
+            </Link>
+            <Link
+              href="/#services"
               className="inline-flex justify-center rounded-full border border-white/15 bg-white px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#050505] transition hover:bg-[#65BC4F] hover:text-[#050505]"
               style={{ color: "#050505" }}
             >
               Explore Services
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -111,14 +124,14 @@ export default function Footer() {
                 Navigation
               </p>
               <div className="mt-5 grid gap-3 text-sm text-white/62">
-                {quickLinks.map((item) => (
-                  <a
+                {quickLinks.map(([label, href]) => (
+                  <Link
                     className="transition hover:text-[#65BC4F]"
-                    href={`#${item.toLowerCase()}`}
-                    key={item}
+                    href={href}
+                    key={label}
                   >
-                    {item}
-                  </a>
+                    {label}
+                  </Link>
                 ))}
               </div>
             </div>
@@ -142,24 +155,26 @@ export default function Footer() {
       </div>
 
       <div className="relative mt-8 flex flex-col gap-6 border-t border-white/10 pt-6 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
-        <a href="#top" className="flex w-44 rounded-full bg-white px-4 py-2">
+        <Link href="/" className="flex w-44 rounded-full bg-white px-4 py-2">
           <Image
             src="/bigwig-logo.png"
             alt="Bigwig Media"
             width={170}
             height={64}
           />
-        </a>
+        </Link>
         <div className="flex flex-wrap gap-4">
-          <a className="transition hover:text-[#65BC4F]" href="#top">
-            Instagram
-          </a>
-          <a className="transition hover:text-[#65BC4F]" href="#top">
-            LinkedIn
-          </a>
-          <a className="transition hover:text-[#65BC4F]" href="#top">
-            YouTube
-          </a>
+          {socialLinks.map(([label, href]) => (
+            <a
+              className="transition hover:text-[#65BC4F]"
+              href={href}
+              key={label}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {label}
+            </a>
+          ))}
         </div>
         <p>2026 Bigwig Media. All rights reserved.</p>
       </div>
