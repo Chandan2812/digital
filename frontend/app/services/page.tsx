@@ -10,10 +10,15 @@ import {
   ShieldCheck,
   Share2,
 } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect } from "react";
 import { ContactPopupButton } from "../components/ContactPopup";
 import Footer from "../components/Footer";
 import HeroGalaxy from "../components/HeroGalaxy";
 import Navbar from "../components/Navbar";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
@@ -98,6 +103,66 @@ const process = [
 ];
 
 export default function ServicesPage() {
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".services-hero-copy > *",
+        { y: 64, opacity: 0, filter: "blur(12px)" },
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 1,
+          stagger: 0.1,
+          ease: "power3.out",
+        },
+      );
+
+      gsap.utils.toArray<HTMLElement>("[data-service-reveal]").forEach((item) => {
+        gsap.fromTo(
+          item,
+          { y: 70, opacity: 0, filter: "blur(12px)" },
+          {
+            y: 0,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 0.95,
+            ease: "power3.out",
+            scrollTrigger: { trigger: item, start: "top 84%" },
+          },
+        );
+      });
+
+      gsap.fromTo(
+        ".service-card",
+        { y: 80, opacity: 0, rotateX: -12 },
+        {
+          y: 0,
+          opacity: 1,
+          rotateX: 0,
+          stagger: 0.08,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".services-grid", start: "top 76%" },
+        },
+      );
+
+      gsap.fromTo(
+        ".process-card",
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".process-grid", start: "top 78%" },
+        },
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#050505] text-white">
       <Navbar />
@@ -110,7 +175,7 @@ export default function ServicesPage() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#050505] to-transparent" />
 
         <div className="relative z-10 max-w-7xl">
-          <div>
+          <div className="services-hero-copy">
             <p className="text-xs font-black uppercase tracking-[0.34em] text-[#65BC4F]">
               Bigwig Media Services
             </p>
@@ -143,7 +208,10 @@ export default function ServicesPage() {
       <section className="relative px-5 py-24 md:px-10 md:py-28 lg:px-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_28%,rgba(21,91,158,0.14),transparent_30%),radial-gradient(circle_at_86%_76%,rgba(101,188,79,0.12),transparent_32%)]" />
         <div className="relative">
-          <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div
+            data-service-reveal
+            className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end"
+          >
             <div>
               <p className="text-xs font-black uppercase tracking-[0.32em] text-[#ef3346]">
                 What We Do
@@ -158,15 +226,16 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="services-grid grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {services.map((service, index) => {
               const Icon = service.icon;
 
               return (
-                <article
+                <a
                   key={service.id}
                   id={service.id}
-                  className="group scroll-mt-32 border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-2 hover:border-[#65BC4F]/55 hover:bg-white/[0.07]"
+                  href="#"
+                  className="service-card group scroll-mt-32 border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-2 hover:border-[#65BC4F]/55 hover:bg-white/[0.07]"
                   style={{ boxShadow: `inset 0 0 120px ${service.color}18` }}
                 >
                   <div className="flex items-start justify-between gap-5">
@@ -198,7 +267,10 @@ export default function ServicesPage() {
                       </span>
                     ))}
                   </div>
-                </article>
+                  <span className="mt-7 inline-flex text-xs font-black uppercase tracking-[0.18em] text-[#65BC4F]">
+                    View Details
+                  </span>
+                </a>
               );
             })}
           </div>
@@ -206,7 +278,10 @@ export default function ServicesPage() {
       </section>
 
       <section className="relative overflow-hidden bg-white px-5 py-24 text-black md:px-10 md:py-28 lg:px-16">
-        <div className="grid gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+        <div
+          data-service-reveal
+          className="grid gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:items-end"
+        >
           <div>
             <p className="text-xs font-black uppercase tracking-[0.32em] text-[#155b9e]">
               How We Work
@@ -221,11 +296,11 @@ export default function ServicesPage() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="process-grid mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {process.map(([title, copy], index) => (
             <article
               key={title}
-              className="min-h-[280px] border border-black/10 bg-[#f7f7f7] p-6 transition duration-300 hover:-translate-y-2 hover:border-[#65BC4F]/60 hover:shadow-2xl md:p-7"
+              className="process-card min-h-[280px] border border-black/10 bg-[#f7f7f7] p-6 transition duration-300 hover:-translate-y-2 hover:border-[#65BC4F]/60 hover:shadow-2xl md:p-7"
             >
               <span className="text-sm font-black uppercase tracking-[0.24em] text-[#ef3346]">
                 0{index + 1}
@@ -243,7 +318,7 @@ export default function ServicesPage() {
 
       <section className="relative grid min-h-[80vh] place-items-center overflow-hidden px-5 py-24 text-center md:px-10 lg:px-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_44%,rgba(101,188,79,0.26),transparent_32%),radial-gradient(circle_at_82%_24%,rgba(239,51,70,0.18),transparent_28%)]" />
-        <div className="relative max-w-6xl">
+        <div data-service-reveal className="relative max-w-6xl">
           <p className="text-xs font-black uppercase tracking-[0.32em] text-[#65BC4F]">
             Ready to choose your growth mix?
           </p>

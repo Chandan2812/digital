@@ -26,49 +26,49 @@ const services = [
     "Website Development",
     "Fast, responsive and conversion-focused websites for brands that need leads, trust and measurable growth.",
     "#155b9e",
-    "https://www.bigwigmediadigital.com/services/website-development-company-in-delhi",
+    "#",
   ],
   [
     "Search Engine Optimization",
     "Technical SEO, content planning and ranking strategy built to increase qualified organic traffic.",
     "#65BC4F",
-    "https://www.bigwigmediadigital.com/services/search-engine-optimization",
+    "#",
   ],
   [
     "Social Media Optimization",
     "Profile systems, creative calendars and platform hygiene that make your brand look active and credible.",
     "#ef3346",
-    "https://www.bigwigmediadigital.com/services/social-media-optimization",
+    "#",
   ],
   [
     "Social Media Marketing",
     "Campaigns, creatives and paid social funnels designed to turn attention into enquiries.",
     "#65BC4F",
-    "https://www.bigwigmediadigital.com/services/social-media-marketing",
+    "#",
   ],
   [
     "Performance Marketing",
     "ROI-led ads across Google, Meta and high-intent channels with tracking, testing and reporting.",
     "#155b9e",
-    "https://www.bigwigmediadigital.com/services/performance-marketing",
+    "#",
   ],
   [
     "Online Reputation Management",
     "Search, review and sentiment control for brands that need trust before the first conversation.",
     "#ffffff",
-    "https://www.bigwigmediadigital.com/services/online-reputation-management",
+    "#",
   ],
   [
     "Graphic Designing & Video Editing",
     "Premium visual assets, ad creatives, reels and brand content that improve recall and click-through.",
     "#ef3346",
-    "https://www.bigwigmediadigital.com/services/graphic-designing",
+    "#",
   ],
   [
     "Email Marketing",
     "Automated campaigns, newsletters and nurture flows that bring prospects back into your pipeline.",
     "#65BC4F",
-    "https://www.bigwigmediadigital.com/services/email-marketing",
+    "#",
   ],
 ];
 const projects = [
@@ -277,12 +277,12 @@ function useCinematicMotion() {
       });
 
       gsap.to(".portfolio-screen-inner", {
-        yPercent: -68,
+        yPercent: -58,
         ease: "none",
         scrollTrigger: {
           trigger: ".portfolio-scene",
           start: "top top",
-          end: "+=240%",
+          end: "+=280%",
           scrub: 1,
           pin: true,
         },
@@ -609,12 +609,12 @@ export default function Home() {
           </div>
           <div className="mx-auto w-full max-w-4xl">
             <div className="rounded-[34px] border-[14px] border-[#111] bg-[#050505] p-4 shadow-2xl">
-              <div className="h-[460px] overflow-hidden rounded-[18px] bg-[#0a0a0a]">
-                <div className="portfolio-screen-inner grid gap-4 p-5">
+              <div className="h-[520px] overflow-hidden rounded-[18px] bg-[#0a0a0a] md:h-[560px]">
+                <div className="portfolio-screen-inner grid gap-4 p-5 pb-28">
                   {projects.concat(projects).map((project, index) => (
                     <div
                       key={`${project.title}-${index}`}
-                      className="min-h-64 border border-white/10 bg-[radial-gradient(circle_at_20%_20%,rgba(101,188,79,0.22),transparent_30%),linear-gradient(135deg,#101010,#050505)] p-6 text-white"
+                      className="min-h-56 border border-white/10 bg-[radial-gradient(circle_at_20%_20%,rgba(101,188,79,0.22),transparent_30%),linear-gradient(135deg,#101010,#050505)] p-6 text-white md:min-h-60"
                     >
                       <span className="text-xs font-black uppercase tracking-[0.24em] text-[#65BC4F]">
                         Our Expertise

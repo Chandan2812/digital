@@ -97,17 +97,19 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <ContactPopupButton
+          <Link
             className={`magnetic hidden rounded-full border px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] shadow-[0_0_24px_rgba(101,188,79,0.45)] transition hover:border-white/30 hover:bg-[#7DDC62] md:inline-flex ${
               isActive("/contact")
                 ? "border-white bg-white text-[#050505]"
                 : "border-[#65BC4F]/70 bg-[#65BC4F] text-[#050505]"
             }`}
+            href="/contact"
             onClick={closeMenu}
             style={{ color: "#050505" }}
+            aria-current={isActive("/contact") ? "page" : undefined}
           >
             Contact Us
-          </ContactPopupButton>
+          </Link>
           <button
             className="magnetic flex h-11 items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 transition hover:border-[#65BC4F]/70 hover:bg-[#65BC4F] hover:text-[#050505]"
             type="button"

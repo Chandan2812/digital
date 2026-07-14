@@ -64,7 +64,7 @@ export function ContactPopupProvider({ children }: { children: ReactNode }) {
       {children}
 
       <div
-        className={`fixed inset-0 z-[120] grid place-items-center bg-black/78 px-4 py-6 backdrop-blur-sm transition duration-300 ${
+        className={`fixed inset-0 z-[120] overflow-y-auto bg-black/78 px-4 py-6 backdrop-blur-sm transition duration-300 md:py-10 ${
           open
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -82,7 +82,7 @@ export function ContactPopupProvider({ children }: { children: ReactNode }) {
         />
 
         <div
-          className={`relative max-h-[calc(100vh-48px)] w-full max-w-4xl overflow-y-auto border border-white/12 bg-[#070707] p-5 text-white shadow-2xl shadow-black/70 transition duration-300 md:p-7 ${
+          className={`relative mx-auto my-auto min-h-0 w-full max-w-4xl border border-white/12 bg-[#070707] p-5 text-white shadow-2xl shadow-black/70 transition duration-300 md:p-7 ${
             open ? "translate-y-0 scale-100" : "translate-y-8 scale-95"
           }`}
         >
