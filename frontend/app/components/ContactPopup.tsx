@@ -64,7 +64,7 @@ export function ContactPopupProvider({ children }: { children: ReactNode }) {
       {children}
 
       <div
-        className={`fixed inset-0 z-[120] overflow-y-auto bg-black/78 px-4 py-6 backdrop-blur-sm transition duration-300 md:py-10 ${
+        className={`fixed inset-0 z-[120] grid place-items-center overflow-y-auto bg-black/78 px-4 py-3 backdrop-blur-sm transition duration-300 sm:py-6 md:py-8 ${
           open
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -82,24 +82,24 @@ export function ContactPopupProvider({ children }: { children: ReactNode }) {
         />
 
         <div
-          className={`relative mx-auto my-auto min-h-0 w-full max-w-4xl border border-white/12 bg-[#070707] p-5 text-white shadow-2xl shadow-black/70 transition duration-300 md:p-7 ${
+          className={`relative mx-auto flex max-h-[calc(100dvh-1.5rem)] min-h-0 w-full max-w-4xl flex-col overflow-hidden border border-white/12 bg-[#070707] p-4 text-white shadow-2xl shadow-black/70 transition duration-300 sm:max-h-[calc(100dvh-3rem)] md:max-h-[calc(100dvh-4rem)] md:p-7 ${
             open ? "translate-y-0 scale-100" : "translate-y-8 scale-95"
           }`}
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_16%,rgba(101,188,79,0.18),transparent_30%),radial-gradient(circle_at_84%_20%,rgba(21,91,158,0.2),transparent_30%),radial-gradient(circle_at_76%_86%,rgba(239,51,70,0.16),transparent_28%)]" />
 
-          <div className="relative mb-6 flex items-start justify-between gap-5">
+          <div className="relative mb-4 flex shrink-0 items-start justify-between gap-4 md:mb-6 md:gap-5">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.28em] text-[#65BC4F]">
                 Start a Conversation
               </p>
               <h2
                 id="contact-popup-title"
-                className="mt-4 max-w-2xl text-3xl font-black uppercase leading-none md:text-5xl"
+                className="mt-3 max-w-2xl text-2xl font-black uppercase leading-none sm:text-3xl md:mt-4 md:text-5xl"
               >
                 Tell us what you want to grow.
               </h2>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/62 md:text-base">
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-white/62 md:mt-4 md:text-base md:leading-7">
                 Share your website, target market and current challenge. We will
                 reply with a clear next step.
               </p>
@@ -115,7 +115,7 @@ export function ContactPopupProvider({ children }: { children: ReactNode }) {
             </button>
           </div>
 
-          <ContactForm className="relative border-white/10 bg-black/30" />
+          <ContactForm className="relative min-h-0 flex-1 overflow-y-auto border-white/10 bg-black/30" />
         </div>
       </div>
     </ContactPopupContext.Provider>
