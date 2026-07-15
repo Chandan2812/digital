@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Globe } from "lucide-react";
+import { Check, ChevronDown, Globe2 } from "lucide-react";
 
 const languages = [
   { code: "en", label: "EN", title: "English" },
@@ -91,37 +91,51 @@ export default function LanguageSelector() {
     setTimeout(() => window.location.reload(), 300);
   };
 
+  const selectedLanguage =
+    languages.find((language) => language.code === lang)?.label ??
+    lang.toUpperCase();
+
   return (
     <div className="relative" ref={wrapperRef}>
       <button
         type="button"
         onClick={() => setOpen(!open)}
+        aria-label="Select language"
+        aria-expanded={open}
         className="
-      flex h-10 w-14 items-center justify-center
-      rounded-full
-      bg-[var(--card)]
-      text-[var(--text-primary)]
-      border border-[var(--border)]
-      shadow-sm
-      transition-all duration-200
-      hover:bg-[var(--muted)]
-    "
+          group flex h-10 items-center gap-2 rounded-full
+          border border-white/15 bg-black/60 px-3
+          text-white shadow-[0_10px_30px_rgba(0,0,0,0.28)]
+          backdrop-blur-md transition-all duration-200
+          hover:border-[#65bc4f]/60 hover:bg-[#65bc4f]/10
+          focus:outline-none focus:ring-2 focus:ring-[#65bc4f]/55
+        "
       >
-        <Globe size={16} />
+        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#65bc4f]/15 text-[#65bc4f] transition-colors duration-200 group-hover:bg-[#65bc4f] group-hover:text-black">
+          <Globe2 size={15} strokeWidth={2.2} />
+        </span>
+        <span className="min-w-5 text-center text-xs font-semibold leading-none">
+          {selectedLanguage}
+        </span>
+        <ChevronDown
+          size={14}
+          className={`text-white/60 transition-transform duration-200 ${
+            open ? "rotate-180" : ""
+          }`}
+        />
       </button>
 
       {open && (
         <div
           className="
-        absolute left-0 top-14 z-50
-        w-48 overflow-hidden
-        
-        border border-[var(--border)]
-        bg-[var(--card)]
-        shadow-2xl
-      "
+            absolute right-0 top-12 z-50
+            w-56 overflow-hidden rounded-lg
+            border border-white/12 bg-[#0b0f0c]/95
+            shadow-[0_24px_70px_rgba(0,0,0,0.42)]
+            backdrop-blur-xl
+          "
         >
-          <div className="max-h-[580px] md:max-h-96 overflow-y-auto">
+          <div className="max-h-[580px] overflow-y-auto py-2 md:max-h-96">
             {languages.map((language) => (
               <button
                 key={language.code}
@@ -131,28 +145,32 @@ export default function LanguageSelector() {
                   setOpen(false);
                 }}
                 className={`
-              flex w-full items-center justify-between
-              px-4 py-1 text-left
-              transition-colors duration-200
-              hover:bg-[var(--muted)]
-              ${lang === language.code ? "bg-[var(--muted)]" : ""}
-            `}
+                  flex w-full items-center justify-between
+                  px-4 py-2 text-left
+                  transition-colors duration-200
+                  hover:bg-white/8
+                  ${lang === language.code ? "bg-[#65bc4f]/12" : ""}
+                `}
               >
                 <span
                   className={`
-                text-sm
-                ${
-                  lang === language.code
-                    ? "text-[var(--primary)] font-semibold"
-                    : "text-[var(--text-primary)]"
-                }
-              `}
+                    text-sm leading-none
+                    ${
+                      lang === language.code
+                        ? "text-[#65bc4f] font-semibold"
+                        : "text-white/82"
+                    }
+                  `}
                 >
                   {language.title}
                 </span>
 
                 {lang === language.code && (
-                  <span className="text-[var(--primary)] text-xs">✓</span>
+                  <Check
+                    size={14}
+                    className="text-[#65bc4f]"
+                    strokeWidth={2.5}
+                  />
                 )}
               </button>
             ))}
