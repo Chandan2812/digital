@@ -95,6 +95,14 @@ export default function LanguageSelector() {
     languages.find((language) => language.code === lang)?.label ??
     lang.toUpperCase();
 
+  const handleLanguageListWheel = (
+    event: React.WheelEvent<HTMLDivElement>,
+  ) => {
+    event.stopPropagation();
+    event.preventDefault();
+    event.currentTarget.scrollTop += event.deltaY;
+  };
+
   return (
     <div className="relative" ref={wrapperRef}>
       <button
@@ -135,7 +143,10 @@ export default function LanguageSelector() {
             backdrop-blur-xl
           "
         >
-          <div className="max-h-[580px] overflow-y-auto py-2 md:max-h-96">
+          <div
+            onWheel={handleLanguageListWheel}
+            className="max-h-[580px] overflow-y-auto py-2 md:max-h-96"
+          >
             {languages.map((language) => (
               <button
                 key={language.code}
