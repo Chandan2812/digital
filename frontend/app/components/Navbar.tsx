@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ContactPopupButton } from "./ContactPopup";
+import LanguageSelector from "./LanguageSelector";
 
 const menuLinks = [
   { label: "Home", href: "/" },
@@ -30,6 +31,23 @@ const socialLinks = [
   },
   { label: "YouTube", href: "https://www.youtube.com/@bigwigmedia" },
 ];
+
+declare global {
+  interface Window {
+    googleTranslateElementInit: () => void;
+    google: {
+      translate: {
+        TranslateElement: new (
+          options: {
+            pageLanguage: string;
+            autoDisplay?: boolean;
+          },
+          elementId: string,
+        ) => void;
+      };
+    };
+  }
+}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -57,6 +75,35 @@ export default function Navbar() {
     if (href === "/") return pathname === "/";
     return pathname === href || pathname.startsWith(`${href}/`);
   };
+
+  useEffect(() => {
+    const googleTranslateElementInit = () => {
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          autoDisplay: false,
+        },
+        "google_translate_element",
+      );
+    };
+
+    const loadGoogleTranslateScript = () => {
+      if (!window.googleTranslateElementInit) {
+        const script = document.createElement("script");
+
+        script.src =
+          "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+
+        script.async = true;
+
+        document.body.appendChild(script);
+
+        window.googleTranslateElementInit = googleTranslateElementInit;
+      }
+    };
+
+    loadGoogleTranslateScript();
+  }, []);
 
   return (
     <>
@@ -97,6 +144,9 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <div className="notranslate">
+            <LanguageSelector />
+          </div>
           <Link
             className={`magnetic hidden rounded-full border px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] shadow-[0_0_24px_rgba(101,188,79,0.45)] transition hover:border-white/30 hover:bg-[#7DDC62] md:inline-flex ${
               isActive("/contact")

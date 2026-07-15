@@ -1,11 +1,12 @@
 
 > frontend@0.1.0 dev
-> next dev -H 127.0.0.1
+> next dev --hostname 127.0.0.1
 
 ▲ Next.js 16.2.10 (Turbopack)
 - Local:         http://127.0.0.1:3000
 - Network:       http://127.0.0.1:3000
-✓ Ready in 1642ms
+- Environments: .env
+✓ Ready in 2.3s
 Creating turbopack project { dir: 'D:\\office\\digital\\frontend', testMode: true }
 
- GET /about 200 in 6.1s (next.js: 1232ms, application-code: 4.9s)
+[?25h

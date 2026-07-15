@@ -3,40 +3,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ContactPopupButton } from "./ContactPopup";
+import { FormEvent, useState } from "react";
 
 const serviceLinks = [
-  [
-    "Website Development",
-    "/services#website-development",
-  ],
-  [
-    "Search Engine Optimization",
-    "/services#search-engine-optimization",
-  ],
-  [
-    "Social Media Optimization",
-    "/services#social-media-optimization",
-  ],
-  [
-    "Social Media Marketing",
-    "/services#social-media-marketing",
-  ],
-  [
-    "Performance Marketing",
-    "/services#performance-marketing",
-  ],
-  [
-    "Online Reputation Management",
-    "/services#online-reputation-management",
-  ],
+  ["Website Development", "/services#website-development"],
+  ["Search Engine Optimization", "/services#search-engine-optimization"],
+  ["Social Media Optimization", "/services#social-media-optimization"],
+  ["Social Media Marketing", "/services#social-media-marketing"],
+  ["Performance Marketing", "/services#performance-marketing"],
+  ["Online Reputation Management", "/services#online-reputation-management"],
   [
     "Graphic Designing & Video Editing",
     "/services#graphic-designing-video-editing",
   ],
-  [
-    "Email Marketing",
-    "/services#email-marketing",
-  ],
+  ["Email Marketing", "/services#email-marketing"],
 ];
 
 const quickLinks = [
@@ -55,6 +35,47 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const [subscriberEmail, setSubscriberEmail] = useState("");
+  const [subscriberStatus, setSubscriberStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [subscriberMessage, setSubscriberMessage] = useState("");
+
+  const handleSubscribe = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubscriberStatus("loading");
+    setSubscriberMessage("");
+
+    try {
+      const apiBaseUrl =
+        process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000";
+      const response = await fetch(`${apiBaseUrl}/subscribers`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: subscriberEmail.trim() }),
+      });
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(result?.message || "Subscription failed");
+      }
+
+      setSubscriberStatus("success");
+      setSubscriberMessage(
+        result?.message || "You are subscribed successfully.",
+      );
+      setSubscriberEmail("");
+    } catch (error) {
+      setSubscriberStatus("error");
+      setSubscriberMessage(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again.",
+      );
+    }
+  };
   return (
     <footer
       id="contact"
@@ -95,6 +116,57 @@ export default function Footer() {
             >
               Explore Services
             </Link>
+          </div>
+
+          <div className="mt-8 border border-[#65BC4F]/30 bg-[#65BC4F]/10 p-5 shadow-[0_0_36px_rgba(101,188,79,0.12)]">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#65BC4F]">
+              Newsletter
+            </p>
+            <h3 className="mt-3 text-2xl font-black uppercase tracking-normal text-white md:text-3xl">
+              Subscribe For Growth Updates
+            </h3>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-white/62">
+              Get digital growth ideas, campaign tips and Bigwig updates in
+              your inbox.
+            </p>
+            <form
+              className="mt-5 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto]"
+              onSubmit={handleSubscribe}
+            >
+              <label className="sr-only" htmlFor="footer-subscriber-email">
+                Email address
+              </label>
+              <input
+                id="footer-subscriber-email"
+                className="h-14 min-w-0 border border-white/10 bg-black/45 px-4 text-sm text-white outline-none transition placeholder:text-white/35 focus:border-[#65BC4F]"
+                name="email"
+                onChange={(event) => setSubscriberEmail(event.target.value)}
+                placeholder="you@company.com"
+                required
+                type="email"
+                value={subscriberEmail}
+              />
+              <button
+                className="inline-flex h-14 items-center justify-center rounded-full bg-[#65BC4F] px-7 text-xs font-black uppercase tracking-[0.16em] text-[#050505] shadow-[0_0_24px_rgba(101,188,79,0.32)] transition hover:bg-[#7DDC62] disabled:cursor-not-allowed disabled:opacity-60"
+                disabled={subscriberStatus === "loading"}
+                type="submit"
+                style={{ color: "#050505" }}
+              >
+                {subscriberStatus === "loading" ? "Subscribing..." : "Subscribe"}
+              </button>
+            </form>
+            {subscriberMessage ? (
+              <p
+                className={`mt-3 text-sm leading-5 ${
+                  subscriberStatus === "success"
+                    ? "text-[#65BC4F]"
+                    : "text-[#ef3346]"
+                }`}
+                role="status"
+              >
+                {subscriberMessage}
+              </p>
+            ) : null}
           </div>
         </div>
 
