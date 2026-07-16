@@ -403,12 +403,7 @@ export default function AboutPage() {
             >
               Book Free Consultation
             </ContactPopupButton>
-            <Link
-              className="inline-flex justify-center rounded-full border border-white/20 bg-white/[0.04] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] transition hover:-translate-y-1 hover:border-[#65BC4F]/70 hover:bg-white/[0.08]"
-              href="/#work"
-            >
-              View Our Work
-            </Link>
+           
           </motion.div>
         </div>
       </section>
@@ -493,7 +488,7 @@ export default function AboutPage() {
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <h3 className="mt-10 text-2xl font-black uppercase leading-none md:text-4xl">
+                  <h3 className="mt-10 text-2xl font-black uppercase leading-none md:text-3xl">
                     {title}
                   </h3>
                   <p className="mt-4 max-w-2xl text-sm leading-7 text-black/62 md:text-base">

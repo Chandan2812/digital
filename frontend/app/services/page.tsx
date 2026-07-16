@@ -238,12 +238,7 @@ export default function ServicesPage() {
               >
                 Start a Project
               </ContactPopupButton>
-              <a
-                href="#website-development"
-                className="inline-flex justify-center rounded-full border border-white/20 bg-white/[0.04] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] transition hover:-translate-y-1 hover:border-[#65BC4F]/70 hover:bg-white/[0.08]"
-              >
-                Explore Services
-              </a>
+             
             </div>
           </div>
         </div>
